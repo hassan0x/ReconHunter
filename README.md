@@ -17,6 +17,8 @@ URL: https://github.com/hassan0x/ReconHunter
 - Malicious File
 - Exploit External Services
 
+URL: https://github.com/hassan0x/MailHunter
+
 ### Find Credentials
 - LLMNR & NBT-NS Poisoning
 - Hashes (Relay & Cracking)

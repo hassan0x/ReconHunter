@@ -59,3 +59,4 @@ URL: https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMoveme
 - Process Injection
 - Custom Payloads
 
+URL: https://github.com/hassan0x/RedTeam/blob/main/DefenseEvasion/DefenseEvasion.md

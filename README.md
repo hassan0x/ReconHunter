@@ -52,7 +52,7 @@ URL: https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainRe
 - Find Credentials
 - Exploit RCE
 
-URL: https://github.com/hassan0x/RedTeam/blob/main/LaternalMovement/LaternalMovement.md
+URL: https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement.md
 
 ### Defense Evasion
 - PowerShell Obfuscation

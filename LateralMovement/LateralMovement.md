@@ -36,14 +36,13 @@ Same as NTLMv1, just with some modification on the encryption algorithm.
 - The client then encrypts that challenge with his own pre-entered password’s hash (NTLM Hash) and sends his username, challenge, and challenge-response back to the server (Net-NTLM Hash).
 - The server tries to encrypt the challenge as well using its own copy of the user’s hash (NTLM Hash) which is stored locally on the server in case of local authentication, or pass the information to the domain controller in case of domain authentication, comparing it to the challenge-response, if equal then the login is successful.
 
-<PIC>
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/MindMap.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen1.png?raw=true)
 
 Note: To use NTLM authentication instead of Kerberos authentication, access IP addresses instead of Hostnames dir \\10.0.2.100\c$.
 
-<PIC>
-<PIC>
-<PIC>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen2.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen3.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen4.png?raw=true)
 
 LM / NTLM Hashes are used for Pass-The-Hash attacks, while Net-NTLMv1 / Net-NTLMv2 Hashes are used for NTLM Relay attacks.
 
@@ -53,7 +52,7 @@ NTLM Relay attack takes place at the Session Setup Request Authentication step.
 
 ## Kerberos Authentication
 
-<PIC>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen5.png?raw=true)
 
 - The client hashes the user’s password, uses that hash to encrypt the current timestamp, and sends the encrypted timestamp to the KDC. The KDC already has a copy of the user’s hash so it uses the hash and tries to decrypt that message to retrieve the timestamp. If the decryption is successful, then the KDC knows that the client used the correct hash and hence proved his identity to that KDC.
 - The Authentication service (AS) replies with two messages:
@@ -65,7 +64,7 @@ NTLM Relay attack takes place at the Session Setup Request Authentication step.
 	B. A message for the client containing a session key for further requests between the client and the service he asked to access, which is encrypted using the key retrieved from the AS-REP step.
 - The client presents the message (TGS) from the TGS-REP step while connecting to the service along with an encrypted part, called authenticator message, this part includes the user’s name and timestamp which was encrypted and will be decrypted using the service session key. Then compare the username and timestamp from the TGS with the username and timestamp from the authenticator message.
 
-<PIC>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen6.png?raw=true)
 
 ### Silver Ticket (Forged TGS)
 ```
@@ -85,8 +84,8 @@ dir \\hydra-dc\c$
 - service: The service name, CIFS as am accessing filesharing service.
 - rc4: NTLM hash of the target service.
 
-<PIC>
-<PIC>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen7.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen8.png?raw=true)
 
 Note: we can use the target machine hash as the service hash for filesharing service (CIFS).
 
@@ -106,8 +105,8 @@ klist
 dir \\hydra-dc\c$
 ```
 
-<PIC>
-<PIC>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen9.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen10.png?raw=true)
 
 In the golden ticket, you’re not restricted to a single service, you got the KRBTGT, you can create your own TGT, so you can create a TGS for any service you want.
 

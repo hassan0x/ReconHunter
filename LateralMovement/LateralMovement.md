@@ -56,12 +56,12 @@ NTLM Relay attack takes place at the Session Setup Request Authentication step.
 
 - The client hashes the user’s password, uses that hash to encrypt the current timestamp, and sends the encrypted timestamp to the KDC. The KDC already has a copy of the user’s hash so it uses the hash and tries to decrypt that message to retrieve the timestamp. If the decryption is successful, then the KDC knows that the client used the correct hash and hence proved his identity to that KDC.
 - The Authentication service (AS) replies with two messages:
-	A. A session key encrypted using the user’s hash, that key will be used for future messages.
-	B. TGT (ticket-granting ticket), That TGT contains information regarding the user and his privileges on the domain, This message is encrypted using the hash of the KRBTGT account’s password. That hash is known only to the KDC, so only the KDC can decrypt the TGT.
+	- A session key encrypted using the user’s hash, that key will be used for future messages.
+	- TGT (ticket-granting ticket), That TGT contains information regarding the user and his privileges on the domain, This message is encrypted using the hash of the KRBTGT account’s password. That hash is known only to the KDC, so only the KDC can decrypt the TGT.
 - The client now has the TGT, he then requests a ticket to access the service he wants, so the client encrypts that request using the session key and sends it to the KDC which will decrypt and validate it. The TGT is also sent in that request.
 - After validating the TGT the KDC responds with two messages:
-	A. A message specialized for the targeted service, encrypted with the service’s hash which is stored at the KDC, this includes the information in the TGT as well as a session key.
-	B. A message for the client containing a session key for further requests between the client and the service he asked to access, which is encrypted using the key retrieved from the AS-REP step.
+	- A message specialized for the targeted service, encrypted with the service’s hash which is stored at the KDC, this includes the information in the TGT as well as a session key.
+	- A message for the client containing a session key for further requests between the client and the service he asked to access, which is encrypted using the key retrieved from the AS-REP step.
 - The client presents the message (TGS) from the TGS-REP step while connecting to the service along with an encrypted part, called authenticator message, this part includes the user’s name and timestamp which was encrypted and will be decrypted using the service session key. Then compare the username and timestamp from the TGS with the username and timestamp from the authenticator message.
 
 ![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen6.png?raw=true)

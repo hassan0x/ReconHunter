@@ -25,6 +25,8 @@ URL: https://github.com/hassan0x/MailHunter
 - Internal Password Spraying
 - Clear-text Traffic Sniffing
 
+URL: https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/FindCredentials.md
+
 ### Exploit RCE
 - BlueKeep
 - MS17-010
@@ -41,6 +43,8 @@ URL: https://github.com/hassan0x/MailHunter
 - PowerView
 - BloodHound
 - CrackMapExec
+
+URL: https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainReconnaissance.md
 
 ### Lateral Movement
 - Kerberos Abuse

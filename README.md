@@ -54,7 +54,8 @@
 - Find Credentials
 - Exploit RCE
 
-[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement.md)
+[Materials Link 1](https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement.md)
+[Materials Link 2](https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement2.md)
 
 ### Defense Evasion
 - PowerShell Obfuscation

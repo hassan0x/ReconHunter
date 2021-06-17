@@ -8,7 +8,7 @@
 - Find Cloud & GitHub
 - Find Email Addresses
 
-Link: https://github.com/hassan0x/ReconHunter
+[Materials Link](https://github.com/hassan0x/ReconHunter)
 
 ### Initial Access
 - External Password Spraying
@@ -17,7 +17,7 @@ Link: https://github.com/hassan0x/ReconHunter
 - Malicious File
 - Exploit External Services
 
-Link: https://github.com/hassan0x/MailHunter
+[Materials Link](https://github.com/hassan0x/MailHunter)
 
 ### Find Credentials
 - LLMNR & NBT-NS Poisoning
@@ -25,12 +25,12 @@ Link: https://github.com/hassan0x/MailHunter
 - Internal Password Spraying
 - Clear-text Traffic Sniffing
 
-Link: https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/FindCredentials.md
+[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/FindCredentials.md)
 
 ### Exploit RCE
-- BlueKeep
-- MS17-010
-- MS08-067
+- [BlueKeep](https://www.rapid7.com/blog/post/2019/09/06/initial-metasploit-exploit-module-for-bluekeep-cve-2019-0708/)
+- [MS17-010](https://www.rapid7.com/db/modules/exploit/windows/smb/ms17_010_eternalblue/)
+- [MS08-067](https://www.rapid7.com/db/modules/exploit/windows/smb/ms08_067_netapi/)
 - SMB Vuln
 
 ### Host Enumeration
@@ -39,14 +39,14 @@ Link: https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/FindCredenti
 - Host Persistence
 - Credentials Dumping
 
-Link: https://github.com/hassan0x/RedTeam/blob/main/HostEnumeration/HostEnumeration.md
+[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/HostEnumeration/HostEnumeration.md)
 
 ### Domain Reconnaissance
 - PowerView
 - BloodHound
 - CrackMapExec
 
-Link: https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainReconnaissance.md
+[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainReconnaissance.md)
 
 ### Lateral Movement
 - Kerberos Abuse
@@ -54,11 +54,11 @@ Link: https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainR
 - Find Credentials
 - Exploit RCE
 
-Link: https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement.md
+[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement.md)
 
 ### Defense Evasion
 - PowerShell Obfuscation
 - Process Injection
 - Custom Payloads
 
-Link: https://github.com/hassan0x/RedTeam/blob/main/DefenseEvasion/DefenseEvasion.md
+[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/DefenseEvasion/DefenseEvasion.md)

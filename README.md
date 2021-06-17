@@ -8,7 +8,7 @@
 - Find Cloud & GitHub
 - Find Email Addresses
 
-URL: https://github.com/hassan0x/ReconHunter
+Link: https://github.com/hassan0x/ReconHunter
 
 ### Initial Access
 - External Password Spraying
@@ -17,7 +17,7 @@ URL: https://github.com/hassan0x/ReconHunter
 - Malicious File
 - Exploit External Services
 
-URL: https://github.com/hassan0x/MailHunter
+Link: https://github.com/hassan0x/MailHunter
 
 ### Find Credentials
 - LLMNR & NBT-NS Poisoning
@@ -25,7 +25,7 @@ URL: https://github.com/hassan0x/MailHunter
 - Internal Password Spraying
 - Clear-text Traffic Sniffing
 
-URL: https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/FindCredentials.md
+Link: https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/FindCredentials.md
 
 ### Exploit RCE
 - BlueKeep
@@ -39,12 +39,14 @@ URL: https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/FindCredentia
 - Host Persistence
 - Credentials Dumping
 
+Link: https://github.com/hassan0x/RedTeam/blob/main/HostEnumeration/HostEnumeration.md
+
 ### Domain Reconnaissance
 - PowerView
 - BloodHound
 - CrackMapExec
 
-URL: https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainReconnaissance.md
+Link: https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainReconnaissance.md
 
 ### Lateral Movement
 - Kerberos Abuse
@@ -52,11 +54,11 @@ URL: https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/DomainRe
 - Find Credentials
 - Exploit RCE
 
-URL: https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement.md
+Link: https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement.md
 
 ### Defense Evasion
 - PowerShell Obfuscation
 - Process Injection
 - Custom Payloads
 
-URL: https://github.com/hassan0x/RedTeam/blob/main/DefenseEvasion/DefenseEvasion.md
+Link: https://github.com/hassan0x/RedTeam/blob/main/DefenseEvasion/DefenseEvasion.md

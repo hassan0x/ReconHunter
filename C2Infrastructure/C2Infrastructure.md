@@ -18,7 +18,6 @@ sed 's/50050/22222/' teamserver > tmp; mv tmp teamserver
 ```
 https://github.com/rsmudge/Malleable-C2-Profiles
 ```
-
 ![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen2.png?raw=true)
 
 1- http-get -> client -> metadata
@@ -83,6 +82,8 @@ https-certificate {
 	set validity "365";
 }
 ```
+
+C2 Profile Full Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2Infrastructure/example.profile)
 
 ### Test New Profile
 ```

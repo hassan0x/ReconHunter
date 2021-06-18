@@ -83,14 +83,13 @@ https-certificate {
 }
 ```
 
-C2 Profile Full Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2Infrastructure/example.profile)
-
 ### Test New Profile
+C2 Profile Full Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2Infrastructure/example.profile)
 ```
-./c2lint custom.profile
+./c2lint example.profile
 ```
 
 ### Run Cobalt
 ```
-./teamserver 8.8.8.8 P@ssw0rd custom.profile &
+./teamserver 8.8.8.8 P@ssw0rd example.profile &
 ```

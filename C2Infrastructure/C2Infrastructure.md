@@ -21,12 +21,66 @@ https://github.com/rsmudge/Malleable-C2-Profiles
 
 ![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen2.png?raw=true)
 
-1- Generate new self-signed certificate
+1- http-get -> client -> metadata
+```
+metadata {
+	base64;
+	prepend "skin=noskin;session-token=";
+	append ";csm-hit=s-24KU11BB82RZSYGJ3BDK|1419899012996";
+	header "Cookie";
+}
+```
+
+2- http-get -> server -> output
+```
+output {
+	prepend "Hello world!";
+	mask;
+	print;
+}
+```
+
+3- http-post -> client -> id
+```
+id {
+	parameter "sn";
+}
+```
+
+4- http-post -> client -> output
+```
+output {
+	base64;
+	print;
+}
+```
+
+5- http-port -> server -> output
+```
+output {
+	prepend "Hello World!";
+	mask;
+	print;
+}
+```
+
+6- http-stager -> server -> output
+```
+header "Content-Type" "image/gif";
+output {
+	prepend "\x01\x00\x01\x00\x00\x02\x01\x44\x00\x3b";
+	prepend "\xff\xff\xff\x21\xf9\x04\x01\x00\x00\x00\x2c\x00\x00\x00\x00";
+	prepend "\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\x00\x00\x00\x00";
+	print;
+}
+```
+
+7- New ssl certificate
 ```
 https-certificate {
-        set O  "dmcjna";
-        set CN "dmcjna";
-        set validity "365";
+	set O  "dmcjna";
+	set CN "dmcjna";
+	set validity "365";
 }
 ```
 

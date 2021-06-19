@@ -88,6 +88,7 @@ C2 Profile Full Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2
 ```
 ./c2lint example.profile
 ```
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen3.png?raw=true)
 
 ### Run Cobalt
 ```

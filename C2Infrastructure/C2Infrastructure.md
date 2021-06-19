@@ -54,7 +54,7 @@ output {
 }
 ```
 
-5- http-port -> server -> output
+5- http-post -> server -> output
 ```
 output {
 	prepend "Hello World!";

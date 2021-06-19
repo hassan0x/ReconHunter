@@ -94,3 +94,7 @@ C2 Profile Full Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2
 ```
 ./teamserver 8.8.8.8 P@ssw0rd example.profile &
 ```
+
+### Host Index Page on C2 Server
+Index Page Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2Infrastructure/index.html)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen4.png?raw=true)

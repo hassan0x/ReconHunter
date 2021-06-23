@@ -1,6 +1,6 @@
 # C2 Infrastructure
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen1.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Images/Screen1.png?raw=true)
 
 ## Setup Redirector
 ```
@@ -18,7 +18,7 @@ sed 's/50050/22222/' teamserver > tmp; mv tmp teamserver
 ```
 https://github.com/rsmudge/Malleable-C2-Profiles
 ```
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen2.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Images/Screen2.png?raw=true)
 
 1- http-get -> client -> metadata
 ```
@@ -88,7 +88,7 @@ C2 Profile Full Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2
 ```
 ./c2lint example.profile
 ```
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen3.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Images/Screen3.png?raw=true)
 
 ### Run Cobalt Strike
 ```
@@ -98,4 +98,4 @@ C2 Profile Full Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2
 ### Host Index Page on C2 Server
 Index Page Example: [Link](https://github.com/hassan0x/RedTeam/blob/main/C2Infrastructure/index.html)
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Screen4.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/C2Infrastructure/Images/Screen4.png?raw=true)

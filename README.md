@@ -8,8 +8,6 @@
 - Find Cloud & GitHub
 - Find Email Addresses
 
-[Materials Link](https://github.com/hassan0x/ReconHunter)
-
 ### Initial Access
 - External Password Spraying
 - Spear Phishing Emails
@@ -17,15 +15,11 @@
 - Malicious File
 - Exploit External Services
 
-[Materials Link](https://github.com/hassan0x/MailHunter)
-
 ### Find Credentials
 - LLMNR & NBT-NS Poisoning
 - Hashes (Relay & Cracking)
 - Internal Password Spraying
 - Clear-text Traffic Sniffing
-
-[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/FindCredentials/README.md)
 
 ### Exploit RCE
 - [BlueKeep](https://www.rapid7.com/blog/post/2019/09/06/initial-metasploit-exploit-module-for-bluekeep-cve-2019-0708/)
@@ -39,14 +33,10 @@
 - Host Persistence
 - Credentials Dumping
 
-[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/HostEnumeration/README.md)
-
 ### Domain Reconnaissance
 - PowerView
 - BloodHound
 - CrackMapExec
-
-[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/DomainReconnaissance/README.md)
 
 ### Lateral Movement
 - Kerberos Abuse
@@ -54,13 +44,7 @@
 - Find Credentials
 - Exploit RCE
 
-[Materials Link 1](https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/README.md)
-
-[Materials Link 2](https://github.com/hassan0x/RedTeam/blob/main/LateralMovement/LateralMovement2.md)
-
 ### Defense Evasion
 - PowerShell Obfuscation
 - Process Injection
 - Custom Payloads
-
-[Materials Link](https://github.com/hassan0x/RedTeam/blob/main/DefenseEvasion/README.md)

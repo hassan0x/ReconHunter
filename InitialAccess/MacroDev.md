@@ -41,9 +41,11 @@ Then host the ciphered text and the key on your own web server.
 
 Then use the PEInject.ps1 script and replace the URLs with your own web server.
 
-# Compress
+The PEInject.ps1 script will reverse what XORed Netcat does then inject Netcat into powershell process.
 
-Then compress using https://www.multiutil.com/text-to-gzip-compress/ and put the output into the below script.
+# PEInject.ps1 Obfuscation
+
+Then compress PEInject.ps1 script using https://www.multiutil.com/text-to-gzip-compress/ and put the output into the below script.
 
 ```
 $s=New-Object IO.MemoryStream(,[Convert]::FromBase64String('insert_gzip_compressed_Invoke-ReflectivePEInjection'));
@@ -51,6 +53,8 @@ IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Comp
 ```
 
 Then Base64 the above script using https://www.base64encode.org/ .
+
+Then also host the obfuscated PEInject script on your own web server, then use the following macro code to download the file then decoded and executed.
 
 ## Macro Code VBA
 

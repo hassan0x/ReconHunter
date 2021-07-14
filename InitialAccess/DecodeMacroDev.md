@@ -1,3 +1,10 @@
+## Process
+
+- Take the three powershell scripts (outlook, bypass, stager) and compress then using https://www.multiutil.com/text-to-gzip-compress/ .
+- Then take each compressed file and put them inside the XML template.
+- Now you will have three XML files (outlook, bypass, stager).
+- Lastly take each file and base64 encode it using https://www.base64encode.org/ , then put each encoded file in (Author, Manager, Company) excel properties.
+
 ## XML Template
 ```
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">

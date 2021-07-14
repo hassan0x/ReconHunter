@@ -17,6 +17,8 @@ objXmlHttpReq.send
 If objXmlHttpReq.Status = 200 Then
 Set objStream = CreateObject("ADODB.Stream")
 
+ChDir ActiveWorkbook.Path
+
 objStream.Open
 objStream.Type = 1
 objStream.Write objXmlHttpReq.responseBody

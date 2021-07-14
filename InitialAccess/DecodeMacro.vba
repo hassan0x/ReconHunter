@@ -171,7 +171,7 @@ Dim oWB As Workbook
 Set oWB = ActiveWorkbook
 Dim msbuild_stager As String
 Dim msbuild_outlook As String
-Dim msbuild_bypass As String
+Dim msbuild_prompt_bypass As String
 
 msbuild_stager = oWB.BuiltinDocumentProperties("Company")
 

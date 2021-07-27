@@ -2,7 +2,7 @@
 
 ## Core Commands
 
-```c
+```
 # List files and directories
 ls
 ls /home
@@ -92,7 +92,7 @@ find / -name "*.txt"
 nano filename
 ```
 
-#### Create link file
+### Create link file
 
 ![](../../.gitbook/assets/1_rg7qiumstvilmuzse3yyoa.jpeg)
 

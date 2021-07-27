@@ -94,7 +94,7 @@ nano filename
 
 ### Create link file
 
-![](../../.gitbook/assets/1_rg7qiumstvilmuzse3yyoa.jpeg)
+![](Images/1_rg7qiumstvilmuzse3yyoa.jpeg)
 
 ```c
 # Soft link

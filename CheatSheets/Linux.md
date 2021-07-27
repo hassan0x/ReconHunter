@@ -96,6 +96,8 @@ nano filename
 
 ![](Images/1_rg7qiumstvilmuzse3yyoa.jpeg)
 
+![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/blob/main/CheatSheets/Images/1_rg7qiumstvilmuzse3yyoa.jpeg?raw=true)
+
 ```c
 # Soft link
 ln –s file link

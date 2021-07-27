@@ -94,7 +94,7 @@ nano filename
 
 ### Create link file
 
-![](Images/1_rg7qiumstvilmuzse3yyoa.jpeg)
+![](Images/1_rg7qiumstvilmuzse3yyoa.jpeg?raw=true)
 
 ![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/1_rg7qiumstvilmuzse3yyoa.jpeg?raw=true)
 

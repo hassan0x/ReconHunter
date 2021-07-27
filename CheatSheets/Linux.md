@@ -94,9 +94,7 @@ nano filename
 
 ### Create link file
 
-![](Images/1_rg7qiumstvilmuzse3yyoa.jpeg?raw=true)
-
-![alt text](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/1_rg7qiumstvilmuzse3yyoa.jpeg?raw=true)
+![](Images/Linux1.jpeg?raw=true)
 
 ```c
 # Soft link
@@ -153,7 +151,7 @@ ay7aga || whoami
 
 ## Redirection
 
-![](../../.gitbook/assets/maxresdefault.jpg)
+![](Images/Linux2.jpg?raw=true)
 
 ```c
 # stdout (1)
@@ -305,7 +303,7 @@ sudo -i
 
 ## Linux Boot Process
 
-![](../../.gitbook/assets/boot-process-chart.jpg)
+![](Images/Linux3.jpg?raw=true)
 
 * **BIOS**: Performs some system integrity checks then executes MBR.
 * **MBR**: It contains information about boot loader then loads and executes the boot loader \(GRUB\).
@@ -316,7 +314,7 @@ sudo -i
 
 ## Linux Run Levels
 
-![](../../.gitbook/assets/run_levels.png)
+![](Images/Linux4.png?raw=true)
 
 ```c
 # Get current runlevel
@@ -353,7 +351,7 @@ systemctl enable/disable apache2
 
 ## File System
 
-![](../../.gitbook/assets/g9nfj.png)
+![](Images/Linux5.png?raw=true)
 
 * **/**: Root directory, every thing starts from there.
 * **/root**: Root home directory, contains Desktop, Downloads, Documents and so on.
@@ -373,7 +371,7 @@ systemctl enable/disable apache2
 
 ## File Permissions
 
-![](../../.gitbook/assets/files-permissions-and-ownership-basics-in-linux.png)
+![](Images/Linux6.png?raw=true)
 
 ```c
 # Permission groups

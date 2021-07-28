@@ -2,15 +2,16 @@
 
 ## C Language
 
+Hello World in C:
 ```c
-# Hello World in C
-
 #include <stdio.h>
 main() {
     printf("Hello World\n");
 }
+```
 
-# Compile this code
+Compile this code:
+```
 gcc main.c -o myprogram
 ```
 

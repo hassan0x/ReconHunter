@@ -78,28 +78,28 @@ mklink /D link dir # Soft link only
 
 ## File System
 
-- **C:\** Top level point that hold all the system files.
-- **C:\Windows\** Contains operating system files.
-- **C:\Program Files\** Contains applications files.
-- **C:\Program Files \(x86\)\** Contains 32bit applications on 64bit operating system.
-- **C:\Users\** Contains users home directories.
-- **C:\ProgramData\** Contains configuration files of applications \(Hidden\).
+- **C:\\** Top level point that hold all the system files.
+- **C:\Windows\\** Contains operating system files.
+- **C:\Program Files\\** Contains applications files.
+- **C:\Program Files (x86)\\** Contains 32bit applications on 64bit operating system.
+- **C:\Users\\** Contains users home directories.
+- **C:\ProgramData\\** Contains configuration files of applications \(Hidden\).
 
 ## File Permissions
 
-* **Windows has 5 main permission types:**
-  * Full Control
-  * Modify
-  * Read & execute
-  * Read
-  * Write
-* **Each user and group on the system has its own permissions:**
-  * User1: Read
-  * User2: Read + Write
-  * Group1: Full Control
-* **Inherited permissions,** child inherit parent permissions \(This is what happens by default in windows\).
-* **Explicit permissions,** permission applied specially to a file.
-* **Explicit** Deny &gt; **Explicit** Allow &gt; **Inherited** Deny &gt; **Inherited** Allow.
+- **Windows has 5 main permission types:**
+  - Full Control
+  - Modify
+  - Read & execute
+  - Read
+  - Write
+- **Each user and group on the system has its own permissions:**
+  - User1: Read
+  - User2: Read + Write
+  - Group1: Full Control
+- **Inherited permissions:** child inherit parent permissions \(This is what happens by default in windows\).
+- **Explicit permissions:** permission applied specially to a file.
+- **Explicit** Deny > **Explicit** Allow > **Inherited** Deny > **Inherited** Allow.
 
 ![](Images/Windows1.png?raw=true)
 

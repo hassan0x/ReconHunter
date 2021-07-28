@@ -2,8 +2,8 @@
 
 ## Core Commands
 
-```
-**List folders and files**
+```bash
+# List folders and files**
 dir
 dir C:\Users
 dir /a

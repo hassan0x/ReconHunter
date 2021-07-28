@@ -17,21 +17,22 @@ gcc main.c -o myprogram
 
 ### Data Types & Variables
 
+Data types:
 ```c
-# Data types
+int:     2, 5, 100
+float:   1.5, 21.6, 100.5
+char:    "s", "2", "$"
+```
 
-int:      2, 5, 100
-float:      1.5, 21.6, 100.5
-char:        "s", "2", "$"
-
-# Variables
-
+Variables:
+```c
 int    i, j, k;
 char   c, ch;
 float  salary;
+```
 
-# Example
-
+Example:
+```c
 #include <stdio.h>
 main() {
     int num1, num2;
@@ -56,9 +57,8 @@ main() {
 
 ### IF Condition
 
+IF:
 ```c
-# IF
-
 #include <stdio.h>
 main() {
    int a = 10;
@@ -69,9 +69,10 @@ main() {
 
    printf("value of a is : %d \n", a);
 }
+```
 
-# IF..else
-
+IF..else:
+```c
 #include <stdio.h>
 main() {
     int a = 100;
@@ -89,9 +90,8 @@ main() {
 
 ### Loops
 
+FOR:
 ```c
-# FOR
-
 #include <stdio.h>
 main() {
     int a;
@@ -100,9 +100,10 @@ main() {
         printf("value of a: %d \n", a);
     }
 }
+```
 
-# While
-
+While:
+```c
 #include <stdio.h>
 main() {
     int a = 0;
@@ -117,7 +118,6 @@ main() {
 ### Simple Program
 
 Write code to check if the student grade is greater than or equal 80% then print "you are special" 3 times.
-
 ```c
 #include <stdio.h> 
 main() { 
@@ -140,29 +140,31 @@ main() {
 
 ## Python Language
 
+Hello World in Python:
 ```c
-# Hello World in Python
 print "Hello World"
+```
 
-# Run this code
+Run this code:
+```
 python code.py
 ```
 
 ### Basic Syntax
 
+There is no data types in python:
 ```c
-# There is no data types in python
-
-counter = 100          # An integer assignment
-miles   = 1000.0       # A floating point
-name    = "John"       # A string
+counter = 100
+miles   = 1000.0
+name    = "John"
 
 print counter
 print miles
 print name
+```
 
-# Example
-
+Example:
+```c
 num1 = 8
 num2 = 4
 
@@ -181,18 +183,18 @@ print "The result is: ", result
 
 ### IF Condition
 
+IF:
 ```c
-# IF
-
 a = 10
 
 if a<20:
    print "a is less than 20"
 
 print "value of a is: ", a
+```
 
-# IF..else
-
+IF..else:
+```c
 a = 100
 
 if a<20:
@@ -205,14 +207,14 @@ print "value of a is: ", a
 
 ### Loops
 
+FOR:
 ```c
-# FOR
-
 for a in range(0,20):
     print "value of a: ", a
+```
 
-# While
-
+While:
+```c
 a = 0
 while a < 20 : 
     print "value of a: ", a
@@ -237,26 +239,28 @@ else:
 
 ### Lists
 
+Lists:
 ```c
-# Lists
-
 students = ["ahmed", "hassan", 12, 10.5, "$"]
 for name in students:
     print name
+```
 
-# Accessing values in lists
-
+Accessing values in lists:
+```c
 print students[0]
 print students[1:4]
+```
 
-# Updating lists
-
+Updating lists:
+```c
 students[0] = "omar"
 students.append("test")
 students.remove("ahmed")
+```
 
-# Example
-
+Example:
+```c
 grades = [80, 50, 12, 90, 95, 100 ,0]
 
 for grade in grades:
@@ -264,8 +268,10 @@ for grade in grades:
         print "You are special, your grade is:", grade
     else:
         print "You are not special, your grade is:", grade
+```
 
-# Take data from user
+### Take data from user
+```c
 username = raw_input("enter your name: ")
 ```
 
@@ -312,9 +318,8 @@ HTML is used to define the layout and structure of the web pages.
 </body>
 
 </html>
-
-# save file as anyname.html
 ```
+Save file as anyname.html
 
 ### Forms
 
@@ -336,9 +341,9 @@ HTML is used to define the layout and structure of the web pages.
 
 ## PHP Language
 
-* To run php code you will need a web server.
-* Web server is a software listens on TCP port 80 \(HTTP\), and its responsible to receive HTTP requests and send HTTP responses, you can think of the web server as the compiler of the language.
-* Most common web servers apache, nginx, miscrosoft IIS.
+- To run php code you will need a web server.
+- Web server is a software listens on TCP port 80 (HTTP), and its responsible to receive HTTP requests and send HTTP responses, you can think of the web server as the compiler of the language.
+- Most common web servers apache, nginx, miscrosoft IIS.
 
 ```c
 # Install apache server and php
@@ -347,10 +352,10 @@ apt-get install apache2 php7.0
 
 ### Basic Syntax
 
-```c
-# No data types like python
-# The Arithmetic Operators like C and Python
+No data types like python.
+The Arithmetic Operators like C and Python.
 
+```c
 <?php
 
 $message = "Hello World!";
@@ -368,9 +373,8 @@ echo "The result is: $result";
 
 ### IF Conditions
 
+IF:
 ```c
-# IF
-
 <?php
 $a = 10;
 
@@ -380,9 +384,10 @@ if ($a<20) {
 
 echo "value of a is: $a";
 ?>
+```
 
-# IF..else
-
+IF..else:
+```c
 <?php
 $a = 100;
 
@@ -399,9 +404,8 @@ echo "value of a is: $a"
 
 ### Loops
 
+FOR:
 ```c
-# FOR
-
 <?php
 
 for($a=0;$a<20;$a++){
@@ -409,9 +413,10 @@ for($a=0;$a<20;$a++){
 }
 
 ?>
+```
 
-# While
-
+While:
+```c
 <?php
 
 $a = 0;
@@ -425,9 +430,8 @@ while ($a < 20){
 
 ### Arrays
 
+Arrays in PHP == Lists in Python
 ```c
-# Arrays in PHP == Lists in Python
-
 <?php
 
 $students = array("ahmed", "hassan", 12, 10.5, "$"); 
@@ -441,7 +445,7 @@ echo $students[0];
 ?>
 ```
 
-### Simple Login Program \(HTML\)
+### Simple Login Program (HTML)
 
 ```markup
 <html>
@@ -467,7 +471,7 @@ echo $students[0];
 </html>
 ```
 
-### Simple Login Program \(PHP\)
+### Simple Login Program (PHP)
 
 ```c
 <?php

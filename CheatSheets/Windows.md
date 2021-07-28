@@ -101,7 +101,7 @@ mklink /D link dir # Soft link only
 * **Explicit permissions,** permission applied specially to a file.
 * **Explicit** Deny &gt; **Explicit** Allow &gt; **Inherited** Deny &gt; **Inherited** Allow.
 
-![](../../.gitbook/assets/change-file-permissions-on-windows-7-step-20.jpg)
+![](Images/Windows1.jpg?raw=true)
 
 ## Users & Groups
 
@@ -147,7 +147,7 @@ net localgroup testgroup /del
 
 UAC gives you administrator access for one command, you trigger it by clicking right click on any file then choose run as administrator.
 
-![](../../.gitbook/assets/uac_2.png)
+![](Images/Windows2.png?raw=true)
 
 ## Runas
 

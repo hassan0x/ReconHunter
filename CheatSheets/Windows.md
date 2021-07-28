@@ -3,7 +3,7 @@
 ## Core Commands
 
 ```
-# List folders and files
+** List folders and files **
 dir
 dir C:\Users
 dir /a

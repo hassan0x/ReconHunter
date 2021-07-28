@@ -2,7 +2,7 @@
 
 ## Core Commands
 
-```bash
+```
 # List folders and files**
 dir
 dir C:\Users
@@ -78,12 +78,12 @@ mklink /D link dir # Soft link only
 
 ## File System
 
-* **C:\** Top level point that hold all the system files.
-* **C:\Windows\** Contains operating system files.
-* **C:\Program Files\** Contains applications files.
-* **C:\Program Files \(x86\)\** Contains 32bit applications on 64bit operating system.
-* **C:\Users\** Contains users home directories.
-* **C:\ProgramData\** Contains configuration files of applications \(Hidden\).
+- **C:\** Top level point that hold all the system files.
+- **C:\Windows\** Contains operating system files.
+- **C:\Program Files\** Contains applications files.
+- **C:\Program Files \(x86\)\** Contains 32bit applications on 64bit operating system.
+- **C:\Users\** Contains users home directories.
+- **C:\ProgramData\** Contains configuration files of applications \(Hidden\).
 
 ## File Permissions
 

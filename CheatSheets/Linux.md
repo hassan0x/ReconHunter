@@ -246,11 +246,10 @@ groupdel testgroup
 # root:$6$KILMHVxNbzVXTmbwlh6GiH6k3u4zrMsvlmTgWRF9m7SW:18184:0:99999:7:::
 
 1- Username
-2- Encrypted password
-      Look at the first 3 characters
-      $1$ = MD5 encryption
-      $5$ = SHA-256 encryption
-      $6$ = SHA-512 encryption
+2- Encrypted password (Look at the first 3 characters)
+   $1$ = MD5 encryption
+   $5$ = SHA-256 encryption
+   $6$ = SHA-512 encryption
 3- Last password change date
 4- Minimum date
 5- Maximum date

@@ -1,6 +1,6 @@
 # Programming
 
-## C Language
+## [1] C Language
 
 Hello World in C:
 ```c
@@ -15,7 +15,7 @@ Compile this code:
 gcc main.c -o myprogram
 ```
 
-### Data Types & Variables
+### [1.1] Data Types & Variables
 
 Data types:
 ```c
@@ -55,7 +55,7 @@ main() {
 }
 ```
 
-### IF Condition
+### [1.2] IF Condition
 
 IF:
 ```c
@@ -88,7 +88,7 @@ main() {
 }
 ```
 
-### Loops
+### [1.3] Loops
 
 FOR:
 ```c
@@ -115,7 +115,7 @@ main() {
 }
 ```
 
-### Simple Program
+### [1.4] Simple Program
 
 Write code to check if the student grade is greater than or equal 80% then print "you are special" 3 times.
 ```c
@@ -138,22 +138,22 @@ main() {
 }
 ```
 
-## Python Language
+## [2] Python Language
 
 Hello World in Python:
-```c
+```python
 print "Hello World"
 ```
 
 Run this code:
-```
+```shell
 python code.py
 ```
 
-### Basic Syntax
+### [2.1] Basic Syntax
 
 There is no data types in python:
-```c
+```python
 counter = 100
 miles   = 1000.0
 name    = "John"
@@ -164,7 +164,7 @@ print name
 ```
 
 Example:
-```c
+```python
 num1 = 8
 num2 = 4
 
@@ -181,10 +181,10 @@ result = num1 / num2
 print "The result is: ", result
 ```
 
-### IF Condition
+### [2.2] IF Condition
 
 IF:
-```c
+```python
 a = 10
 
 if a<20:
@@ -194,7 +194,7 @@ print "value of a is: ", a
 ```
 
 IF..else:
-```c
+```python
 a = 100
 
 if a<20:
@@ -205,27 +205,27 @@ else:
 print "value of a is: ", a
 ```
 
-### Loops
+### [2.3] Loops
 
 FOR:
-```c
+```python
 for a in range(0,20):
     print "value of a: ", a
 ```
 
 While:
-```c
+```python
 a = 0
 while a < 20 : 
     print "value of a: ", a
     a = a + 1
 ```
 
-### Simple Program
+### [2.4] Simple Program
 
 Write code to check if the student grade is greater than or equal 80% then print "you are special" 3 times.
 
-```c
+```python
 grade=50
 
 if grade>=80:
@@ -237,30 +237,30 @@ else:
     print "You are not special"
 ```
 
-### Lists
+### [2.5] Lists
 
 Lists:
-```c
+```python
 students = ["ahmed", "hassan", 12, 10.5, "$"]
 for name in students:
     print name
 ```
 
 Accessing values in lists:
-```c
+```python
 print students[0]
 print students[1:4]
 ```
 
 Updating lists:
-```c
+```python
 students[0] = "omar"
 students.append("test")
 students.remove("ahmed")
 ```
 
 Example:
-```c
+```python
 grades = [80, 50, 12, 90, 95, 100 ,0]
 
 for grade in grades:
@@ -270,14 +270,14 @@ for grade in grades:
         print "You are not special, your grade is:", grade
 ```
 
-### Take data from user
-```c
+### [2.7] Take data from user
+```python
 username = raw_input("enter your name: ")
 ```
 
-### Simple Login Program
+### [2.8] Simple Login Program
 
-```c
+```python
 print "Hello friends this is my first login program in python ..."
 print "-----------------------------------------------------"
 
@@ -297,7 +297,7 @@ for credential in credentials:
 print "Login failed, please try again."
 ```
 
-## HTML
+## [3] HTML
 
 HTML is used to define the layout and structure of the web pages.
 
@@ -321,7 +321,7 @@ HTML is used to define the layout and structure of the web pages.
 ```
 Save file as anyname.html
 
-### Forms
+### [3.1] Forms
 
 ```markup
 <html>
@@ -339,23 +339,23 @@ Save file as anyname.html
 </html>
 ```
 
-## PHP Language
+## [4] PHP Language
 
 - To run php code you will need a web server.
 - Web server is a software listens on TCP port 80 (HTTP), and its responsible to receive HTTP requests and send HTTP responses, you can think of the web server as the compiler of the language.
 - Most common web servers apache, nginx, miscrosoft IIS.
 
-```c
+```shell
 # Install apache server and php
 apt-get install apache2 php7.0
 ```
 
-### Basic Syntax
+### [4.1] Basic Syntax
 
 No data types like python.
 The Arithmetic Operators like C and Python.
 
-```c
+```php
 <?php
 
 $message = "Hello World!";
@@ -371,10 +371,10 @@ echo "The result is: $result";
 ?>
 ```
 
-### IF Conditions
+### [4.2] IF Conditions
 
 IF:
-```c
+```php
 <?php
 $a = 10;
 
@@ -387,7 +387,7 @@ echo "value of a is: $a";
 ```
 
 IF..else:
-```c
+```php
 <?php
 $a = 100;
 
@@ -402,10 +402,10 @@ echo "value of a is: $a"
 ?>
 ```
 
-### Loops
+### [4.3] Loops
 
 FOR:
-```c
+```php
 <?php
 
 for($a=0;$a<20;$a++){
@@ -416,7 +416,7 @@ for($a=0;$a<20;$a++){
 ```
 
 While:
-```c
+```php
 <?php
 
 $a = 0;
@@ -428,10 +428,10 @@ while ($a < 20){
 ?>
 ```
 
-### Arrays
+### [4.4] Arrays
 
 Arrays in PHP == Lists in Python
-```c
+```php
 <?php
 
 $students = array("ahmed", "hassan", 12, 10.5, "$"); 
@@ -445,7 +445,9 @@ echo $students[0];
 ?>
 ```
 
-### Simple Login Program (HTML)
+## [5] HTML & PHP Lab
+
+### [5.1] Simple Login Program (HTML)
 
 ```markup
 <html>
@@ -471,9 +473,9 @@ echo $students[0];
 </html>
 ```
 
-### Simple Login Program (PHP)
+### [5.2] Simple Login Program (PHP)
 
-```c
+```php
 <?php
 
 $username = $_POST["username"];

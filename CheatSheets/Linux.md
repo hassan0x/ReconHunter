@@ -98,7 +98,6 @@ ln –s file soft-link
 # Hard link
 ln file hard-link
 ```
-
 ![](Images/Linux1.png?raw=true)
 
 ## Special Characters
@@ -240,7 +239,7 @@ groupdel testgroup
 7- Shell type
 ```
 
-#### /etc/shadow
+**/etc/shadow**
 
 ```
 # Example
@@ -260,7 +259,7 @@ groupdel testgroup
 8- Expire date
 ```
 
-#### /etc/group
+**/etc/group**
 
 ```
 # Example
@@ -417,8 +416,7 @@ apt-get purge software-name
 # Search on software
 apt-cache search software-name
 ```
-
-If the software don’t exist in the repository then you can go to the main website of the software and download the deb package.
+**If the software don’t exist in the repository then you can go to the main website of the software and download the deb package.**
 
 ```
 # Install .deb package

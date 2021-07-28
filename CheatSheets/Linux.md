@@ -90,23 +90,20 @@ find / -name "*.txt"
 
 # Text editor (Save: Ctrl+X)
 nano filename
-```
 
-### Create link file
-
-![](Images/Linux1.jpeg?raw=true)
-
-```c
+# Create link file
 # Soft link
-ln –s file link
+ln –s file soft-link
 
 # Hard link
-ln file link
+ln file hard-link
 ```
+
+![](Images/Linux1.png?raw=true)
 
 ## Special Characters
 
-```c
+```
 # Directory separator ( / )
 cd /home/student
 
@@ -151,9 +148,7 @@ ay7aga || whoami
 
 ## Redirection
 
-![](Images/Linux2.jpg?raw=true)
-
-```c
+```
 # stdout (1)
 whoami > a.txt
 whoami 1> a.txt
@@ -174,10 +169,11 @@ ls > out.txt 2> err.txt
 # print the output and error to all.txt
 ls > all.txt 2>&1
 ```
+![](Images/Linux2.png?raw=true)
 
 ## Piping
 
-```c
+```
 # Pass the output of the first command to the input of the second command.
 ls –l | grep "Desktop"
 cat /etc/passwd | grep ":0:"
@@ -187,7 +183,7 @@ cat a.txt | sort | uniq
 
 ## Environment Variables
 
-```c
+```
 # Run "env" command
 HOSTNAME=Debian
 USER=student
@@ -207,7 +203,7 @@ SHELL=/bin/sh
 
 ## User Management
 
-```c
+```
 # Create user
 useradd testuser
 
@@ -231,7 +227,7 @@ groupdel testgroup
 
 #### /etc/passwd
 
-```c
+```
 # Example
 # root:x:0:0:root:/root:/bin/bash
 
@@ -246,7 +242,7 @@ groupdel testgroup
 
 #### /etc/shadow
 
-```c
+```
 # Example
 # root:$6$KILMHVxNbzVXTmbwlh6GiH6k3u4zrMsvlmTgWRF9m7SW:18184:0:99999:7:::
 
@@ -266,7 +262,7 @@ groupdel testgroup
 
 #### /etc/group
 
-```c
+```
 # Example
 # root:x:0:hassan,ahmed
 
@@ -278,7 +274,7 @@ groupdel testgroup
 
 ## SU
 
-```c
+```
 # SU switch to another user
 su
 su testuser
@@ -293,7 +289,7 @@ su username -c command
 
 ## Sudo
 
-```c
+```
 # Sudo can run single command as root
 sudo cat /etc/shadow
 
@@ -303,20 +299,18 @@ sudo -i
 
 ## Linux Boot Process
 
-![](Images/Linux3.jpg?raw=true)
+- **BIOS**: Performs some system integrity checks then executes MBR.
+- **MBR**: It contains information about boot loader then loads and executes the boot loader \(GRUB\).
+- **GRUB**: displays a splash screen then executes kernel.
+- **Kernel**: mount partitions then executes init script.
+- **Init**: determine the Linux run level then executes runlevel programs.
+- **Runlevel**: responsible for which services started at which runlevel.
 
-* **BIOS**: Performs some system integrity checks then executes MBR.
-* **MBR**: It contains information about boot loader then loads and executes the boot loader \(GRUB\).
-* **GRUB**: displays a splash screen then executes kernel.
-* **Kernel**: mount partitions then executes init script.
-* **Init**: determine the Linux run level then executes runlevel programs.
-* **Runlevel**: responsible for which services started at which runlevel.
+![](Images/Linux3.png?raw=true)
 
 ## Linux Run Levels
 
-![](Images/Linux4.png?raw=true)
-
-```c
+```
 # Get current runlevel
 runlevel
 
@@ -329,10 +323,11 @@ systemctl set-default runlevelX.target
 # List services at specific runlevel (S means start, K means kill/stop)
 ls /etc/rcX.d
 ```
+![](Images/Linux4.png?raw=true)
 
 ## Services
 
-```c
+```
 # Start service
 systemctl start apache2
 
@@ -351,29 +346,24 @@ systemctl enable/disable apache2
 
 ## File System
 
-![](Images/Linux5.png?raw=true)
-
 * **/**: Root directory, every thing starts from there.
 * **/root**: Root home directory, contains Desktop, Downloads, Documents and so on.
-* **/bin**: Contains users binaries \(ls, cp, cat\).
-* **/sbin**: Contains system binaries \(reboot, ifconfig, fdisk\).
+* **/bin**: Contains users binaries (ls, cp, cat).
+* **/sbin**: Contains system binaries (reboot, ifconfig, fdisk).
 * **/etc**: Contains system configuration files.
-* **/home**: Home directory for all users \(/home/student, /home/testuser\).
+* **/home**: Home directory for all users (/home/student, /home/testuser).
 * **/boot**: Contains boot load files and kernel files.
 * **/lib**: Contains system libraries.
-* **/var**: Contains variable data which is continuously change in size \(/var/log\).
-* **/usr**: Contains user programs and it contains another bin \(/usr/bin\) & sbin \(/usr/sbin\)
-
-  which contains second level user and system binaries.
-
+* **/var**: Contains variable data which is continuously change in size (/var/log).
+* **/usr**: Contains user programs and it contains another bin (/usr/bin) & sbin (/usr/sbin) which contains second level user and system binaries.
 * **/mnt**: Mount directory where system admin can mount any partitions here.
-* **/tmp**: Temporary files \(delete at reboot\).
+* **/tmp**: Temporary files (delete at reboot).
+
+![](Images/Linux5.png?raw=true)
 
 ## File Permissions
 
-![](Images/Linux6.png?raw=true)
-
-```c
+```
 # Permission groups
 1- owner (u)
 2- group (g)
@@ -398,10 +388,11 @@ chmod 764 filename
 chmod 755 filename 
 chmod 644 filename
 ```
+![](Images/Linux6.png?raw=true)
 
 ## Installing Software
 
-```c
+```
 # Update repository (always must run first)
 apt-get update
 
@@ -429,7 +420,7 @@ apt-cache search software-name
 
 If the software don’t exist in the repository then you can go to the main website of the software and download the deb package.
 
-```c
+```
 # Install .deb package
 dpkg –i nmap.deb
 
@@ -440,4 +431,3 @@ dpkg –l | grep nmap
 # Remove package
 dpkg –r nmap
 ```
-

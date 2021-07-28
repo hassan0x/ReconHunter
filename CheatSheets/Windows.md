@@ -2,7 +2,7 @@
 
 ## Core Commands
 
-```
+```c
 # List folders and files
 dir
 dir C:\Users

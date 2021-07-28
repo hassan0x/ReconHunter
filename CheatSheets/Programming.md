@@ -301,7 +301,7 @@ print "Login failed, please try again."
 
 HTML is used to define the layout and structure of the web pages.
 
-```markup
+```html
 <html>
 
 <head>
@@ -323,7 +323,7 @@ Save file as anyname.html
 
 ### [3.1] Forms
 
-```markup
+```html
 <html>
 
 <body>
@@ -341,9 +341,8 @@ Save file as anyname.html
 
 ## [4] PHP Language
 
-- To run php code you will need a web server.
-- Web server is a software listens on TCP port 80 (HTTP), and its responsible to receive HTTP requests and send HTTP responses, you can think of the web server as the compiler of the language.
-- Most common web servers apache, nginx, miscrosoft IIS.
+- To run php code you will need a web server (apache, nginx, etc).
+- Web server is a software listens by default on TCP port 80 (HTTP), and its responsible to receive HTTP requests and send HTTP responses, you can think of the web server as the compiler of the language.
 
 ```shell
 # Install apache server and php
@@ -352,8 +351,8 @@ apt-get install apache2 php7.0
 
 ### [4.1] Basic Syntax
 
-No data types like python.
-The Arithmetic Operators like C and Python.
+- No data types like python.
+- The arithmetic operators like C and Python.
 
 ```php
 <?php
@@ -449,7 +448,7 @@ echo $students[0];
 
 ### [5.1] Simple Login Program (HTML)
 
-```markup
+```html
 <html>
 
 <head>

@@ -1,8 +1,8 @@
 # Windows
 
-## Core Commands
+## [1] Core Commands
 
-```
+```shell
 # List folders and files**
 dir
 dir C:\Users
@@ -76,7 +76,7 @@ mklink /H hardlink originalfile
 mklink /D link dir # Soft link only
 ```
 
-## File System
+## [2] File System
 
 - **C:\\** Top level point that hold all the system files.
 - **C:\Windows\\** Contains operating system files.
@@ -85,7 +85,7 @@ mklink /D link dir # Soft link only
 - **C:\Users\\** Contains users home directories.
 - **C:\ProgramData\\** Contains configuration files of applications \(Hidden\).
 
-## File Permissions
+## [3] File Permissions
 
 - **Windows has 5 main permission types:**
   - Full Control
@@ -97,15 +97,15 @@ mklink /D link dir # Soft link only
   - User1: Read
   - User2: Read + Write
   - Group1: Full Control
-- **Inherited permissions:** child inherit parent permissions \(This is what happens by default in windows\).
+- **Inherited permissions:** child inherit parent permissions (This is what happens by default in windows).
 - **Explicit permissions:** permission applied specially to a file.
 - **Explicit** Deny > **Explicit** Allow > **Inherited** Deny > **Inherited** Allow.
 
 ![](Images/Windows1.png?raw=true)
 
-## Users & Groups
+## [4] Users & Groups
 
-```
+```shell
 # Create user
 net user testuser * /add
 
@@ -143,27 +143,27 @@ net localgroup testgroup testuser /del
 net localgroup testgroup /del
 ```
 
-## UAC
+## [5] UAC
 
 UAC gives you administrator access for one command, you trigger it by clicking right click on any file then choose run as administrator.
 
 ![](Images/Windows2.png?raw=true)
 
-## Runas
+## [6] Runas
 
-```
+```shell
 # runas lets you run command as another user like in linux (su testuser -c whoami)
 runas /user:testuser whoami 
 runas /user:testuser "ping google.com"
 ```
 
-## Credentials
+## [7] Credentials
 
 - Credentials (usernames & passwords) are stored in the SAM file.
 - SAM file location: C:\Windows\System32\config\SAM.
 - Mostly stores the users' passwords in the NTLM hash.
 
-```
+```shell
 # Example
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
@@ -171,13 +171,13 @@ test:1001:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 test123:1008:aad3b435b51404eeaad3b435b51404ee:7a21990fcd3d759941e45c490f143d5f:::
 ```
 
-## Security Policy
+## [8] Security Policy
 
 - **Audit policy**: Control logs through event viewer.
 - **User rights**: Control permissions on the OS \(change time, backup, shutdown\).
 - **Security options**: Rename administrator account, Account policy Password length, complexity, expiration period. Account lockout threshold, duration.
 
-## Registry
+## [9] Registry
 
 Registry stores configuration settings and there are 5 types of registry hives:
 
@@ -187,7 +187,7 @@ Registry stores configuration settings and there are 5 types of registry hives:
 - **HKEY_USERS (HKU)**: Settings for every user
 - **HKEY_Current_Config (HKCC)**: settings for hardware
 
-```
+```shell
 # Print help
 reg /?
 
@@ -209,9 +209,9 @@ reg add hklm\software\microsoft\windows\currentversion\run /v "EvilTest" /d "cal
 reg delete hklm\software\microsoft\windows\currentversion\run /v "EvilTest"
 ```
 
-## Windows Sharing (SMB)
+## [10] Windows Sharing (SMB)
 
-```
+```shell
 # Print help
 net /?
 
@@ -231,9 +231,9 @@ net use
 net use z: /delete
 ```
 
-## Services
+## [11] Services
 
-```
+```shell
 # Display active services
 sc query
 
@@ -255,9 +255,9 @@ sc config spooler start=disabled
 sc config spooler start=auto
 ```
 
-## Processes
+## [12] Processes
 
-```
+```shell
 # List all tasks
 tasklist
 
@@ -282,9 +282,9 @@ wmic process where (name like "calc%") list brief
 wmic process where (name = "calculator.exe") delete
 ```
 
-## Task Scheduling
+## [13] Task Scheduling
 
-```
+```shell
 # Display all scheduled tasks
 schtasks
 

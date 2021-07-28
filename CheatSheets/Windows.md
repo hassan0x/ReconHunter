@@ -105,7 +105,7 @@ mklink /D link dir # Soft link only
 
 ## Users & Groups
 
-```c
+```
 # Create user
 net user testuser * /add
 
@@ -151,7 +151,7 @@ UAC gives you administrator access for one command, you trigger it by clicking r
 
 ## Runas
 
-```c
+```
 # runas lets you run command as another user like in linux (su testuser -c whoami)
 runas /user:testuser whoami 
 runas /user:testuser "ping google.com"
@@ -159,11 +159,11 @@ runas /user:testuser "ping google.com"
 
 ## Credentials
 
-* Credentials \(usernames & passwords\) are stored in the SAM file.
-* SAM file location: C:\Windows\System32\config\SAM.
-* Mostly stores the users' passwords in the NTLM hash.
+- Credentials (usernames & passwords) are stored in the SAM file.
+- SAM file location: C:\Windows\System32\config\SAM.
+- Mostly stores the users' passwords in the NTLM hash.
 
-```c
+```
 # Example
 Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
 Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
@@ -173,21 +173,21 @@ test123:1008:aad3b435b51404eeaad3b435b51404ee:7a21990fcd3d759941e45c490f143d5f::
 
 ## Security Policy
 
-* **Audit policy**: Control logs through event viewer.
-* **User rights**: Control permissions on the OS \(change time, backup, shutdown\).
-* **Security options**: Rename administrator account, Account policy Password length, complexity, expiration period. Account lockout threshold, duration.
+- **Audit policy**: Control logs through event viewer.
+- **User rights**: Control permissions on the OS \(change time, backup, shutdown\).
+- **Security options**: Rename administrator account, Account policy Password length, complexity, expiration period. Account lockout threshold, duration.
 
 ## Registry
 
 Registry stores configuration settings and there are 5 types of registry hives:
 
-* **HKEY\_Classes\_Root \(HKCR\)**: settings for applications
-* **HKEY\_Current\_User \(HKCU\)**: settings for the current user
-* **HKEY\_Local\_Machine \(HKLM\)**: local machine settings
-* **HKEY\_USERS \(HKU\)**: Settings for every user
-* **HKEY\_Current\_Config \(HKCC\)**: settings for hardware
+- **HKEY_Classes_Root (HKCR)**: settings for applications
+- **HKEY_Current_User (HKCU)**: settings for the current user
+- **HKEY_Local_Machine (HKLM)**: local machine settings
+- **HKEY_USERS (HKU)**: Settings for every user
+- **HKEY_Current_Config (HKCC)**: settings for hardware
 
-```c
+```
 # Print help
 reg /?
 
@@ -209,9 +209,9 @@ reg add hklm\software\microsoft\windows\currentversion\run /v "EvilTest" /d "cal
 reg delete hklm\software\microsoft\windows\currentversion\run /v "EvilTest"
 ```
 
-## Windows Sharing \(SMB\)
+## Windows Sharing (SMB)
 
-```c
+```
 # Print help
 net /?
 
@@ -233,7 +233,7 @@ net use z: /delete
 
 ## Services
 
-```c
+```
 # Display active services
 sc query
 
@@ -257,7 +257,7 @@ sc config spooler start=auto
 
 ## Processes
 
-```c
+```
 # List all tasks
 tasklist
 
@@ -284,7 +284,7 @@ wmic process where (name = "calculator.exe") delete
 
 ## Task Scheduling
 
-```c
+```
 # Display all scheduled tasks
 schtasks
 
@@ -297,4 +297,3 @@ schtasks /query /tn eviloo
 # Delete scheduled task
 schtasks /delete /tn eviloo
 ```
-

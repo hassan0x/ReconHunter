@@ -101,7 +101,7 @@ mklink /D link dir # Soft link only
 * **Explicit permissions,** permission applied specially to a file.
 * **Explicit** Deny &gt; **Explicit** Allow &gt; **Inherited** Deny &gt; **Inherited** Allow.
 
-![](Images/Windows1.jpg?raw=true)
+![](Images/Windows1.png?raw=true)
 
 ## Users & Groups
 

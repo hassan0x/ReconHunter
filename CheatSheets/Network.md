@@ -1,35 +1,35 @@
 # Network
 
-## OSI Model
+## [1] OSI Model
 
 ![](Images/Network1.png?raw=true)
 
-## Physical Layer
+## [2] Physical Layer
 
-- Physical layer is how we physically connect devices \(Ethernet cables, Wireless\).
+- Physical layer is how we physically connect devices (Ethernet cables, Wireless).
 - Ethernet cards and Wi-Fi and network hubs all operate at the physical layer.
 - There are multiple network topologies that we can use to connect devices physically.
 
-### Network Topology
+### [2.1] Network Topology
 
-- **Star topology (most common)**
-  - Each node is connected to central node such as switch
-  - Better performance
-  - Single point of failure
-- **Ring topology**
-  - Each node is connected to two other nodes
-  - Data travels in one direction passing through each node to reach its destination
-  - If one node breaks it can disrupt the entire network
-- **Bus topology**
-  - Each node is connected to a single cable which all nodes share
-  - The signals travels in both directions
-  - Only one node can transmit at one time
-  - More nodes less performance since all nodes share the same cable
-  - If the main cable breaks it can disrupt the entire network
+- **Star topology (most common):**
+  - Each node is connected to central node such as switch.
+  - Better performance.
+  - Single point of failure.
+- **Ring topology:**
+  - Each node is connected to two other nodes.
+  - Data travels in one direction passing through each node to reach its destination.
+  - If one node breaks it can disrupt the entire network.
+- **Bus topology:**
+  - Each node is connected to a single cable which all nodes share.
+  - The signals travels in both directions.
+  - Only one node can transmit at one time.
+  - More nodes less performance since all nodes share the same cable.
+  - If the main cable breaks it can disrupt the entire network.
 
 ![](Images/Network2.png?raw=true)
 
-## Data Link Layer
+## [3] Data Link Layer
 
 - It responsible to make devices communicate with each others through the same network but not outside the network.
 - Each device has its own MAC address (00:11:22:33:44:55) and through this MAC the devices can communicate and send messages to each other.
@@ -37,11 +37,11 @@
 - The data in the network layer 2 (Data Link) called Frames.
 - Network switches and Access Points operate at layer 2.
 
-### Network Switches
+### [3.1] Network Switches
 
 ![](Images/Network3.png?raw=true)
 
-### ARP Protocol
+### [3.2] ARP Protocol
 
 - Find MAC address of IP address.
 - One system broadcast an ARP request to all the systems in the network asking who has this IP address (192.168.1.1), the system who has this IP respond with its MAC address, then both the systems store each other’s MAC address in their ARP cache so they don’t have to ask again for a while.
@@ -49,28 +49,28 @@
 
 ![](Images/Network4.png?raw=true)
 
-## Network Layer
+## [4] Network Layer
 
 - Connect separate networks together.
 - Routers operate at this layer.
 - Devices at this layer communicate to each other through the IP addresses.
 
-### Routers
+### [4.1] Routers
 
 ![](Images/Network5.png?raw=true)
 
-### IPv4
+### [4.2] IPv4
 
-```
+```shell
 # IPv4 Structure
 8bit   .   8bit  .   8bit  .   8bit
 0-255  .  0-255  .  0-255  .  0-255
 192    .   168   .    1    .    1
 ```
 
-### IP Classes
+### [4.3] IP Classes
 
-```
+```shell
 # Class A
 Range: 0-127
 Ex: 0.0.0.0 – 127.0.0.0
@@ -97,9 +97,9 @@ Ex: 240.0.0.0 – 255.255.255.255
 Reserved for experimental.
 ```
 
-### Reserved IP Addresses
+### [4.4] Reserved IP Addresses
 
-```
+```shell
 # Reserved for localhost
 127.0.0.0 - 127.255.255.255
 
@@ -112,22 +112,22 @@ Reserved for experimental.
 # Last IP of any network is reserved for the broadcast (Broadcast Address)
 ```
 
-### Subnet Mask
+### [4.5] Subnet Mask
 
 It identifies which part of the IP address is the network identifier and which part is the host identifier.
 
-```
+```shell
 # Subnet mask
 Class A == 255.0.0.0
 Class B == 255.255.0.0
 Class C == 255.255.255.0
 ```
 
-### CIDR
+### [4.6] CIDR
 
 Classless Inter-Domain Routing (CIDR) is another and simple way to represent the subnet mask.
 
-```
+```shell
 # Class A
 10.0.0.0/8 
 "/8" is the number of bits reserved for the network == 255.0.0.0
@@ -141,17 +141,17 @@ Classless Inter-Domain Routing (CIDR) is another and simple way to represent the
 "/24" is the number of bits reserved for the network == 255.255.255.0
 ```
 
-### Gateway
+### [4.7] Gateway
 
 It’s responsible for routing you from one network to another network and in most cases it will be the first IP in the network.
 
-```
+```shell
 Class A: 10.0.0.1
 Class B: 172.16.0.1
 Class C: 192.168.1.1
 ```
 
-### DHCP
+### [4.8] DHCP
 
 Automatically assign IP addresses for you, Example:
 
@@ -162,7 +162,7 @@ Automatically assign IP addresses for you, Example:
 
 In your local network the DHCP server will be the router itself, but in other enterprise networks it will be a separate server.
 
-**How DHCP Work**
+**How DHCP Works:**
 
 - Client send DHCP Discover packet to all the network.
 - DHCP Server (Router) replay with DHCP Offer packet (how about 192.168.1.16).
@@ -171,17 +171,17 @@ In your local network the DHCP server will be the router itself, but in other en
 
 ![](Images/Network6.png?raw=true)
 
-### Routing
+### [4.9] Routing
 
 - Routing is the process of moving packets between networks.
 - Router is the device that routes the packets between networks.
 - Router have multiple interfaces and can connect multiple networks at the same time.
 
-**Routing Table**
+**Routing Table:**
 
-It’s a table in the router device like the CAM table in the switch device, which is responsible for determining the next hop \(Router\) that it should send the packet to it, to reach the final destination. If no route to the destination network is exist, the router will send the packet to its default gateway.
+It’s a table in the router device like the CAM table in the switch device, which is responsible for determining the next hop (Router) that it should send the packet to it, to reach the final destination. If no route to the destination network is exist, the router will send the packet to its default gateway.
 
-```
+```shell
 # Routing Table Example
 192.168.2.0/24     192.168.2.1
 192.168.45.0/24    192.168.45.1
@@ -189,7 +189,7 @@ It’s a table in the router device like the CAM table in the switch device, whi
 default gateway    192.168.1.1
 ```
 
-**Routing Protocols**
+**Routing Protocols:**
 
 Routing protocols are responsible for determining next hop, shortest path, network changes and link failures.
 
@@ -199,15 +199,15 @@ Routing protocols are responsible for determining next hop, shortest path, netwo
 
 ![](Images/Network7.png?raw=true)
 
-### NAT
+### [4.10] NAT
 
-Network Address Translation (NAT) it’s a technique to translating one IP address to one or more IP addresses. All the home networks \(LAN\) is using the NAT protocol.
+Network Address Translation (NAT) it’s a technique to translating one IP address to one or more IP addresses. All the home networks (LAN) is using the NAT protocol.
 
 ![](Images/Network8.png?raw=true)
 
-### ICMP Protocol
+### [4.11] ICMP Protocol
 
-```
+```shell
 # Test connectivity between two hosts. 
 Ping google.com
 
@@ -216,21 +216,21 @@ Ping google.com
 2- Destination send ICMP Echo Reply packet to the client.
 ```
 
-**TTL (Time to Live)**
+**TTL (Time to Live):**
 
 - TTL has fixed number almost 64.
 - It started at 64 then decrement by 1 at every router (hop or node) until it reachs its destination.
 - This number exist to prevent the infinite loops.
 
-### Traceroute
+### [4.12] Traceroute
 
 ![](Images/Network9.png?raw=true)
 
-## Real Life Scenario (Lab)
+## [5] Real Life Scenario (Lab)
 
 ![](Images/Network10.png?raw=true)
 
-## Transport Layer
+## [6] Transport Layer
 
 - Ensure reliable data transfer between hosts.
 - Determine the success transfers and the failed transfers, retransmit the failed ones and reorder the packets to form the original message.
@@ -239,11 +239,11 @@ Ping google.com
 
 There are 65,536 ports on the TCP protocol and 65,536 ports on the UDP protocol.
 
-- **Ports\(1–1023\)**: Well known and the most used ports (HTTP, HTTPS, DNS, SMTP, SSH, FTP, TELNET). 
-- **Ports\(1024–49151\)**: Available ports that can be used.
-- **Ports\(49152–65535\)**: Can’t be used because the operating system use this ports in the outgoing connections.
+- **Ports(1–1023):** Well known and the most used ports (HTTP, HTTPS, DNS, SMTP, SSH, FTP, TELNET). 
+- **Ports(1024–49151):** Available ports that can be used.
+- **Ports(49152–65535):** Can’t be used because the operating system use this ports in the outgoing connections.
 
-```
+```shell
 # Well Known Ports
 21 == FTP
 22 == SSH
@@ -258,7 +258,7 @@ There are 65,536 ports on the TCP protocol and 65,536 ports on the UDP protocol.
 3389 == RDP
 ```
 
-### TCP Protocol
+### [6.1] TCP Protocol
 
 TCP is the most used protocol. It performing a lot of functions to ensure the validation of data and a reliable connection.
 
@@ -268,11 +268,13 @@ TCP is the most used protocol. It performing a lot of functions to ensure the va
 
 TCP is design to ensure the accurate delivery not speed.
 
-**TCP Flags**: It’s a piece of information in the TCP header, added to every packet to help TCP protocol to ensure the accurate delivery \(Syn, Ack, Fin, Push, Reset\).
+**TCP Flags:**
 
-**TCP 3-Way Handshake**
+It’s a piece of information in the TCP header, added to every packet to help TCP protocol to ensure the accurate delivery \(Syn, Ack, Fin, Push, Reset\).
 
-```
+**TCP 3-Way Handshake:**
+
+```shell
 # TCP 3-Way Handshake
 1- SYN(seq=100) packet sent.
 2- SYN-ACK(seq=200,ack=101) packet received.
@@ -281,7 +283,7 @@ TCP is design to ensure the accurate delivery not speed.
 ```
 ![](Images/Network11.png?raw=true)
 
-### UDP Protocol
+### [6.2] UDP Protocol
 
 UDP operate at the same level as TCP, and is connectionless and stateless which means:
 
@@ -291,23 +293,23 @@ UDP operate at the same level as TCP, and is connectionless and stateless which 
 
 And because of this UDP is faster than TCP, and it used in cases where the accuracy not important like audio/video streaming where one packet lost don’t effect the transmission.
 
-## Session layer
+## [7] Session layer
 
 Creates and terminates the unique connections between hosts.
 
-## Presentation layer
+## [8] Presentation layer
 
 It's responsible for encoding and decoding the message and show the message in the right format (Text, Photo, Video).
 
-## Application Layer
+## [9] Application Layer
 
 Application layer is the end user interface like web browser, mail client and so on. We will talk about two major application protocols like DNS, HTTP.
 
-### DNS Protocol
+### [9.1] DNS Protocol
 
 It’s used to convert Hostname to IP address like google.com to 172.217.21.78, it operates at UDP port 53.
 
-```
+```shell
 # DNS Structure
 Domain: (mail.google.com, login.yahoo.com)
 Top level domain: .com, .net, .org, .edu, .gov
@@ -322,19 +324,17 @@ MX:     Show Mail Servers of the domain mx1.sans.org
 ```
 ![](Images/Network12.png?raw=true)
 
-### HTTP Protocol
+### [9.2] HTTP Protocol
 
-It’s responsible for transferring the web pages and other files on the World Wide Web Operate on TCP port 80.
+- It’s responsible for transferring the web pages and other files on the World Wide Web Operate on TCP port 80.
+- HTTP is stateless so if you visit a login page and insert your username and password and now you have access on your account but you closed the page and revisiting it, then you will required to insert your username and password again, it doesn’t remember you, it's stateless.
+- So now websites use cookies, it’s piece of information sent in the HTTP header to make the website remember you and don’t ask your password every time you visit it.
 
-HTTP is stateless so if you visit a login page and insert your username and password and now you have access on your account but you closed the page and revisiting it, then you will required to insert your username and password again, it doesn’t remember you, it's stateless.
-
-So now websites use cookies, it’s piece of information sent in the HTTP header to make the website remember you and don’t ask your password every time you visit it.
-
-**HTTP methods (GET, POST)**
+**HTTP methods (GET, POST):**
 
 Both used to retrieve data from website, but GET pass the variables in the URL and POST pass the variables in the HTTP header.
 
-**HTTP status codes**
+**HTTP status codes:**
 
 - 200: Success
 - 300: Redirect

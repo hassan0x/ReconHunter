@@ -225,7 +225,7 @@ groupdel testgroup
 
 ## Important Files
 
-#### /etc/passwd
+**/etc/passwd**
 
 ```
 # Example

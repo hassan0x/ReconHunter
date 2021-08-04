@@ -2,7 +2,7 @@
 
 ## [1] OSI Model
 
-![](Images/Network1.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network1.png?raw=true)
 
 ## [2] Physical Layer
 
@@ -27,7 +27,7 @@
   - More nodes less performance since all nodes share the same cable.
   - If the main cable breaks it can disrupt the entire network.
 
-![](Images/Network2.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network2.png?raw=true)
 
 ## [3] Data Link Layer
 
@@ -39,7 +39,7 @@
 
 ### [3.1] Network Switches
 
-![](Images/Network3.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network3.png?raw=true)
 
 ### [3.2] ARP Protocol
 
@@ -47,7 +47,7 @@
 - One system broadcast an ARP request to all the systems in the network asking who has this IP address (192.168.1.1), the system who has this IP respond with its MAC address, then both the systems store each other’s MAC address in their ARP cache so they don’t have to ask again for a while.
 - The problem with ARP protocol that it accepts responses without validation.
 
-![](Images/Network4.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network4.png?raw=true)
 
 ## [4] Network Layer
 
@@ -57,7 +57,7 @@
 
 ### [4.1] Routers
 
-![](Images/Network5.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network5.png?raw=true)
 
 ### [4.2] IPv4
 
@@ -169,7 +169,7 @@ In your local network the DHCP server will be the router itself, but in other en
 - Client accept the IP and send DHCP Request packet with the IP.
 - DHCP replay with DHCP ACK packet.
 
-![](Images/Network6.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network6.png?raw=true)
 
 ### [4.9] Routing
 
@@ -197,13 +197,13 @@ Routing protocols are responsible for determining next hop, shortest path, netwo
 - **OSPF**: detect changes in the network topology and link failures.
 - **BGP**: most widely used protocol, can determine the shortest path and if one route fail, it changes to another route.
 
-![](Images/Network7.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network7.png?raw=true)
 
 ### [4.10] NAT
 
 Network Address Translation (NAT) it’s a technique to translating one IP address to one or more IP addresses. All the home networks (LAN) is using the NAT protocol.
 
-![](Images/Network8.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network8.png?raw=true)
 
 ### [4.11] ICMP Protocol
 
@@ -224,11 +224,11 @@ Ping google.com
 
 ### [4.12] Traceroute
 
-![](Images/Network9.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network9.png?raw=true)
 
 ## [5] Real Life Scenario (Lab)
 
-![](Images/Network10.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network10.png?raw=true)
 
 ## [6] Transport Layer
 
@@ -281,7 +281,7 @@ It’s a piece of information in the TCP header, added to every packet to help T
 3- ACK(seq=101,ack=201) packet sent.
 4- Connection established.
 ```
-![](Images/Network11.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network11.png?raw=true)
 
 ### [6.2] UDP Protocol
 
@@ -322,7 +322,7 @@ AAAA:   Show IP address (V6) of the domain fd84:4765:de78:2600::28ff
 NS:     Show DNS Servers of the domain ns1.sans.org
 MX:     Show Mail Servers of the domain mx1.sans.org
 ```
-![](Images/Network12.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network12.png?raw=true)
 
 ### [9.2] HTTP Protocol
 
@@ -340,4 +340,4 @@ Both used to retrieve data from website, but GET pass the variables in the URL a
 - 300: Redirect
 - 400: Not Found
 
-![](Images/Network13.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Network13.png?raw=true)

@@ -101,7 +101,7 @@ mklink /D link dir # Soft link only
 - **Explicit permissions:** permission applied specially to a file.
 - **Explicit** Deny > **Explicit** Allow > **Inherited** Deny > **Inherited** Allow.
 
-![](Images/Windows1.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Windows1.png?raw=true)
 
 ## [4] Users & Groups
 
@@ -147,7 +147,7 @@ net localgroup testgroup /del
 
 UAC gives you administrator access for one command, you trigger it by clicking right click on any file then choose run as administrator.
 
-![](Images/Windows2.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Windows2.png?raw=true)
 
 ## [6] Runas
 

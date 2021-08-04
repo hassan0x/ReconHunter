@@ -98,7 +98,7 @@ ln –s file soft-link
 # Hard link
 ln file hard-link
 ```
-![](Images/Linux1.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Linux1.png?raw=true)
 
 ## [2] Special Characters
 
@@ -168,7 +168,7 @@ ls > out.txt 2> err.txt
 # print the output and error to all.txt
 ls > all.txt 2>&1
 ```
-![](Images/Linux2.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Linux2.png?raw=true)
 
 ## [4] Piping
 
@@ -304,7 +304,7 @@ sudo -i
 - **Init**: determine the Linux run level then executes runlevel programs.
 - **Runlevel**: responsible for which services started at which runlevel.
 
-![](Images/Linux3.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Linux3.png?raw=true)
 
 ## [11] Linux Run Levels
 
@@ -321,7 +321,7 @@ systemctl set-default runlevelX.target
 # List services at specific runlevel (S means start, K means kill/stop)
 ls /etc/rcX.d
 ```
-![](Images/Linux4.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Linux4.png?raw=true)
 
 ## [12] Services
 
@@ -357,7 +357,7 @@ systemctl enable/disable apache2
 - **/mnt**: Mount directory where system admin can mount any partitions here.
 - **/tmp**: Temporary files (delete at reboot).
 
-![](Images/Linux5.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Linux5.png?raw=true)
 
 ## [14] File Permissions
 
@@ -386,7 +386,7 @@ chmod 764 filename
 chmod 755 filename 
 chmod 644 filename
 ```
-![](Images/Linux6.png?raw=true)
+![](https://raw.githubusercontent.com/hassan0x/RedTeam/main/CheatSheets/Images/Linux6.png?raw=true)
 
 ## [15] Installing Software
 

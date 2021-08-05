@@ -1,19 +1,20 @@
-## Reconnaissance
+# [1] Technology OSINT
 
-### Root Domains
-1- Acquisitions
+## [1.1] Root-Domains Enumeration
+
+### [1.1.1] Acquisitions
 ```
 # Replace CompanyName instead of google
 https://index.co/company/google/acquirees
 ```
 
-2- Reverse Whois
+### [1.1.2] Reverse Whois
 ```
 # Find root domains owned by the same org (Reverse Whois)
 amass intel -src -whois -d example.com
 ```
 
-3- ASN (Reverse DNS & Cert Dump)
+### [1.1.3] ASN (Reverse DNS & Cert Dump)
 ```
 # Find ASN for org
 amass intel -org example.com
@@ -24,9 +25,10 @@ amass intel -ipv4 -src -asn 26808
 # Find root domains through Reverse DNS + SSL Cert Dump
 amass intel -active -ipv4 -src -asn 26808
 ```
-### Subdomains Enumeration
 
-1- Public Data Sources
+## [1.2] Sub-Domains Enumeration
+
+### [1.2.1] Public Data Sources
 ```
 # Rapid7 Project Sonar
 # https://github.com/Cgboal/SonarSearch
@@ -42,7 +44,7 @@ amass enum -passive -src -d example.com
 ./subfinder -silent -d example.com
 ```
 
-2- Brute Force
+### [1.2.2] Brute Force
 ```
 # https://github.com/OJ/gobuster
 gobuster dns -d example.com -t 50 -w /usr/share/amass/wordlists/subdomains.lst
@@ -53,13 +55,13 @@ wget https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056
 sort subdomains.txt all.txt | uniq > jhaddix_commonspeak.txt
 ```
 
-3- Alternations
+### [1.2.3] Alternations
 ```
 # https://github.com/infosec-au/altdns
 ./altdns.py -i known-subdomains.txt -o new_subdomains.txt
 ```
 
-4- Zone Transfer
+### [1.2.4] Zone Transfer
 ```
 # DIG (Zone Transfer)
 dig zonetransfer.me NS
@@ -73,7 +75,7 @@ host -t AXFR zonetransfer.me nsztm2.digi.ninja
 dnsrecon -d zonetransfer.me -t axfr
 ```
 
-5- Reverse DNS & Cert Dump
+### [1.2.5] Reverse DNS & Cert Dump
 ```
 # ASN -> CIDR
 nmap --script targets-asn --script-args targets-asn.asn=17012
@@ -91,7 +93,7 @@ then echo $line1 $line2; fi; done
 dnsrecon -r 8.8.8.0/24
 ```
 
-6- Sub-Domains Takeover
+### [1.2.6] Sub-Domains Takeover
 ```
 # Target Specific
 go get https://github.com/Ice3man543/SubOver
@@ -107,7 +109,7 @@ do amass enum --passive -d $host -o domains-data/$host.txt;
 go run subover.go -l domains-data/$host.txt | tee -a subdomains-takeover.txt;
 ```
 
-7- Live Sub-Domains
+### [1.2.7] Live Sub-Domains
 ```
 # HTTProbe
 cat subdomains.txt | /root/go/bin/httprobe > live-domains.txt
@@ -122,9 +124,9 @@ sleep 2
 done
 ```
 
-### IP Addresses
+## [1.3] IP Addresses
 
-1-Censys
+### [1.3.1] Censys
 ```
 # Install the packege
 pip install censys-command-line
@@ -139,7 +141,7 @@ done
 cat censys.txt | egrep "ip|/" | cut -d '"' -f 2,4 | sed 's/ip"/\n/' > censys_map.txt
 ```
 
-2- Shodan
+### [1.3.2] Shodan
 ```
 # Search through the banners only for IPs belong to the target company
 "yahoo"
@@ -164,7 +166,7 @@ cat shodan_scope_result.txt | egrep -v ":|/" | egrep . > IP.txt
 cat shodan_scope_result.txt | egrep "^[0-9]|Hostnames|/tcp|/udp" > shodan_map.txt
 ```
 
-3- Service Scanning
+### [1.3.3] Service Scanning
 ```
 # Nmap scan top 10 ports
 nmap -iL IP.txt -oA result --open -p 21,22,23,25,80,110,139,443,445,3306,3389
@@ -184,7 +186,7 @@ if [ -e scan-$y.gnmap ]; then
 fi
 ```
 
-### Github Recon
+## [1.4] Github Recon
 ```
 # Find the repos owned by the target organization (not forked)
 # then clone these repos locally
@@ -203,7 +205,7 @@ cat commits.txt | grep "api\|key\|user\|uname\|pw\|pass\|mail\|credential\|login
 trufflehog --regex --entropy=False repo-name
 ```
 
-### Cloud Recon
+## [1.5] Cloud Recon
 ```
 # Clone the repo
 git clone https://github.com/gwen001/s3-buckets-finder
@@ -226,9 +228,9 @@ done; done
 php s3-buckets-bruteforcer.php --bucket res.txt
 ```
 
-### People OSINT
+# [2] People OSINT
 
-1- Hunter
+## [2.1] Hunter.IO
 ```
 # Website Search
 https://hunter.io/search/google.com
@@ -243,7 +245,7 @@ https://api.hunter.io/v2/domain-search?domain=google.com&api_key=XXXXX
 curl -s "https://api.hunter.io/v2/domain-search?domain=google.com&api_key=XXXXX" | grep "@google.com" | cut -d '"' -f4 | sort -n | uniq
 ```
 
-2- Google Dorks
+## [2.2] Google Dorks
 
 Save the following code as file.sh and run it with bash file.sh, it will collect all the target company emails from google search engine.
 ```
@@ -280,7 +282,7 @@ while(true);do
 done
 ```
 
-3- LinkedIn
+## [2.3] LinkedIn
 ```
 function sleep(ms) {
 	  return new Promise(resolve => setTimeout(resolve, ms)) }
@@ -329,7 +331,7 @@ while(1){
 connections()
 ```
 
-4- Leaked Databases
+## [2.4] Leaked Databases
 ```
 # HaveIBeenPwned
 # Website Search

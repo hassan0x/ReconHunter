@@ -1,3 +1,16 @@
+# [0] Generic Tools
+
+## [0.1] DNS Tools
+```
+# DIG
+dig @8.8.8.8 example.com {A|NS|MX|CNAME|TXT|ANY} +noall +answer
+dig @8.8.8.8 example.com A +norecurse
+
+# HOST
+host -v -t {A|NS|MX|CNAME|TXT|ANY} example.com 8.8.8.8
+host -r -t A example.com 8.8.8.8
+```
+
 # [1] Technology OSINT
 
 ## [1.1] Root-Domains Enumeration

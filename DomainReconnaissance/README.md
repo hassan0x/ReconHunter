@@ -11,7 +11,7 @@ nmap -Pn -sS -p139,445 --open -iL scope.txt
 // SSH & Telnet
 nmap -Pn -sS -p22,23 --open -iL scope.txt
 
-// Web Service
+// Web Services
 nmap -Pn -sS -p80,443 --open -iL scope.txt
 
 // SNMP Service

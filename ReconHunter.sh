@@ -59,7 +59,7 @@ mkdir $Domain 2>/dev/null
 cd $Domain
 
 echo "Running Amass..."
-amass enum -d $Domain -timeout 5 > 1.Amass.txt 2>/dev/null
+amass enum -d $Domain -passive -timeout 5 > 1.Amass.txt 2>/dev/null
 cat 1.Amass.txt | grep "node" | cut -d " " -f 6 | sort -u > 1.1.Amass.SubDomains.txt
 
 echo "Running SubFinder..."

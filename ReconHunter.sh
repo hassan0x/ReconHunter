@@ -2,79 +2,87 @@
 
 Setup () {
 
-echo "Setup....."
-date
+    echo "Setup....."
+    date
 
-sudo apt-get install -y curl git
-sudo apt-get install -y amass
-sudo apt-get install -y subfinder
-sudo subfinder -update
-sudo apt-get install -y nmap
-sudo apt-get install -y massdns
-sudo apt-get install -y masscan
-sudo apt-get install -y httprobe
-sudo apt-get install -y dirsearch
-sudo apt-get install -y awscli
-sudo apt-get install -y trufflehog
-sudo apt-get install -y golang
-sudo apt-get install -y chromium
-sudo apt-get install -y php
-sudo apt-get install -y python3-pip
-sudo apt-get install -y unzip
-sudo apt-get install -y pipx
-sudo apt-get install -y jq
-sudo PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install censys
-sudo PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install s3scanner
+    # Install required packages
+    sudo apt-get install -y curl git subfinder nmap massdns masscan httprobe dirsearch awscli trufflehog golang chromium php python3-pip unzip pipx jq || exit 1
 
-sudo rm -rf Tools
-mkdir Tools
-export GOPATH=$PWD/Tools
-go install github.com/Ice3man543/SubOver@latest
-go install github.com/tomnomnom/unfurl@latest
-go install github.com/tomnomnom/waybackurls@latest
-go install github.com/jaeles-project/gospider@latest
+    # Set up pipx environment variables and installing censys and s3scanner
+    export PIPX_HOME=/opt/pipx
+    export PIPX_BIN_DIR=/usr/local/bin
+    sudo pipx install censys
+    sudo pipx install s3scanner
 
-cd Tools
-wget -q https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
-unzip aquatone_linux_amd64_1.7.0.zip
-rm README.md LICENSE.txt aquatone_linux_amd64_1.7.0.zip
-cd ..
+    # Create and set up Tools directory
+    sudo rm -rf Tools
+    mkdir Tools 2>/dev/null
+    export GOPATH=$PWD/Tools
+    
+    # Install Go-based tools
+    echo "Installing Go-based tools..."
+    go install github.com/Ice3man543/SubOver@latest || exit 1
+    go install github.com/tomnomnom/unfurl@latest || exit 1
+    go install github.com/tomnomnom/waybackurls@latest || exit 1
+    go install github.com/jaeles-project/gospider@latest || exit 1
 
-date
+    cd Tools || exit 1
+
+    # Download and set up Aquatone
+    wget -q https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip
+    unzip -q aquatone_linux_amd64_1.7.0.zip -d . && rm aquatone_linux_amd64_1.7.0.zip
+
+    # Download and set up Amass
+    wget -q https://github.com/owasp-amass/amass/releases/download/v3.23.3/amass_Linux_amd64.zip
+    unzip -q amass_Linux_amd64.zip -d . && cp amass_Linux_amd64/amass . && rm -rf amass_Linux_amd64 amass_Linux_amd64.zip
+
+    cd ..
+    date
 }
+
 
 Passive_Scraping () {
 
 echo "##### PASSIVE SCRAPING AND RESOLVING #####"
 date
 
-if [[ $2 == "" ]];then
-echo "Usage: $0 $1 example.com"
-exit
+# Check for missing arguments
+if [[ -z $2 ]]; then
+    echo "Usage: $0 <script_name> <domain>"
+    exit 1
 fi
 
 Domain=$2
-echo "Domain:" $Domain
-mkdir $Domain 2>/dev/null
-cd $Domain
+echo "Domain: $Domain"
 
+# Create directory and move into it
+mkdir -p "$Domain"
+cd "$Domain" || exit
+
+# Run Amass
 echo "Running Amass..."
-amass enum -d $Domain -passive -timeout 5 > 1.Amass.txt 2>/dev/null
-cat 1.Amass.txt | grep "node" | cut -d " " -f 6 | sort -u > 1.1.Amass.SubDomains.txt
+../Tools/amass enum -passive -d "$Domain" 2>/dev/null | sort -u > 1.Amass.txt
 
+# Run SubFinder
 echo "Running SubFinder..."
-subfinder -silent -all -d $Domain | sort -u > 2.SubFinder.txt
+subfinder -silent -all -d "$Domain" | sort -u > 2.SubFinder.txt
 
-echo "Combine Result..."
-cat 1.1.Amass.SubDomains.txt 2.SubFinder.txt | tr A-Z a-z | sort -u > 3.Passive.SubDomains.txt
+# Combine results
+echo "Combining Results..."
+cat 1.Amass.txt 2.SubFinder.txt | tr 'A-Z' 'a-z' | sort -u > 3.Passive.SubDomains.txt
 
+# Resolve subdomains using massdns
 echo "Running Resolving..."
-> 4.massDNS.Resolving.txt
-massdns -r ../Resources/resolvers.txt -q 3.Passive.SubDomains.txt | grep -E "IN A [0-9]|CNAME" >> 4.massDNS.Resolving.txt
-cat 4.massDNS.Resolving.txt | grep $Domain | cut -d " " -f1 | sort -u | sed 's/.$//' > 5.Live.SubDomains.txt
-cat 3.Passive.SubDomains.txt 5.Live.SubDomains.txt | sort | uniq -u > 6.Died.SubDomains.txt
-cat 4.massDNS.Resolving.txt | grep "IN A" | grep $Domain | cut -d " " -f5 | sort -u > 7.IP.Addresses.txt
+massdns -q -r ../Resources/resolvers.txt 3.Passive.SubDomains.txt | grep -E "IN A [0-9]|CNAME" > 4.massDNS.Resolving.txt
 
+# Extract live subdomains and identify dead ones
+grep "$Domain" 4.massDNS.Resolving.txt | cut -d " " -f1 | sed 's/.$//' | sort -u > 5.Live.SubDomains.txt
+cat 3.Passive.SubDomains.txt 5.Live.SubDomains.txt | sort | uniq -u > 6.Died.SubDomains.txt
+
+# Extract unique IP addresses
+grep "IN A" 4.massDNS.Resolving.txt | grep "$Domain" | cut -d " " -f5 | sort -u > 7.IP.Addresses.txt
+
+# Return to previous directory and display the completion time
 cd ..
 date
 }
@@ -84,26 +92,37 @@ Brute_Force () {
 echo "##### BRUTE FORCING #####"
 date
 
-if [[ $2 == "" ]];then
-echo "Usage: $0 $1 example.com"
-exit
+# Ensure domain argument is provided
+if [[ -z $2 ]]; then
+    echo "Usage: $0 <script_name> <domain>"
+    exit 1
 fi
 
 Domain=$2
-echo "Domain:" $Domain
-mkdir $Domain 2>/dev/null
-cd $Domain
+echo "Domain: $Domain"
 
-echo "Combine Wordlists..."
-cat ../Resources/all.txt ../Resources/commonspeak.txt | tr A-Z a-z | sort -u | sed "s/$/.$Domain/g" > Total.Wordlist.txt
+# Create directory for the domain and move into it
+mkdir -p "$Domain"
+cd "$Domain" || exit
 
+# Combine wordlists for brute-forcing
+echo "Combining Wordlists..."
+cat ../Resources/all.txt ../Resources/commonspeak.txt | tr 'A-Z' 'a-z' | sort -u | sed "s/$/.$Domain/g" > Total.Wordlist.txt
+
+# Run massdns for brute force subdomain discovery
 echo "Running BruteForce..."
-> 8.massDNS.BruteForce.txt
-massdns -r ../Resources/resolvers.txt Total.Wordlist.txt | grep -E "IN A [0-9]|CNAME" >> 8.massDNS.BruteForce.txt
-cat 8.massDNS.BruteForce.txt | grep $Domain | cut -d " " -f1 | sort -u | sed 's/.$//' > 9.Live.SubDomains.txt
-cat 8.massDNS.BruteForce.txt | grep "IN A" | grep $Domain | cut -d " " -f5 | sort -u > 10.IP.Addresses.txt
+massdns -q -r ../Resources/resolvers.txt Total.Wordlist.txt | grep -E "IN A [0-9]|CNAME" > 8.massDNS.BruteForce.txt
 
+# Extract live subdomains
+grep "$Domain" 8.massDNS.BruteForce.txt | cut -d " " -f1 | sed 's/.$//' | sort -u > 9.Live.SubDomains.txt
+
+# Extract unique IP addresses from resolved "A" records
+grep "IN A" 8.massDNS.BruteForce.txt | grep "$Domain" | cut -d " " -f5 | sort -u > 10.IP.Addresses.txt
+
+# Clean up the wordlist file
 rm Total.Wordlist.txt
+
+# Return to the previous directory and print the end time
 cd ..
 date
 }
@@ -113,40 +132,43 @@ WildCard_Removal () {
 echo "##### WILDCARD REMOVAL #####"
 date
 
-if [[ $2 == "" ]];then
-echo "Usage: $0 $1 example.com"
-exit
-fi
+# Check for the required domain argument
+    if [[ -z "$2" ]]; then
+        echo "Usage: $0 <script_name> example.com"
+        return 1
+    fi
 
 Domain=$2
-echo "Domain:" $Domain
-mkdir $Domain 2>/dev/null
-cd $Domain
+echo "Domain: $Domain"
 
+# Create and change to the domain directory
+mkdir -p "$Domain"
+cd "$Domain" || exit 1
+
+# Combine subdomain lists, convert to lowercase and remove leading wildcards
 echo "Running Wildcard Removal..."
 cat 5.Live.SubDomains.txt 9.Live.SubDomains.txt | tr A-Z a-z | sort -u | sed 's/^[*.]*//g' > 11.Total.SubDomains.txt
 
+# Check each subdomain in 11.Total.SubDomains.txt to see if it resolves with a wildcard
 > 12.Having.Wildcard.txt
 cat 11.Total.SubDomains.txt | while read line; do
-host -t A *.$line | grep "has address" | cut -d " " -f1 | sed 's/^*.//g' >> 12.Having.Wildcard.txt
+host -t A *.$line | cut -d " " -f1 | sed 's/^*.//g' >> 12.Having.Wildcard.txt
 done
 
 cat 11.Total.SubDomains.txt 12.Having.Wildcard.txt | sort | uniq -u > 12.1.NotHaving.Wildcard.txt
 
+# Process each subdomain from 12.Having.Wildcard.txt to find and save the root wildcard subdomains to 12.2.Root.Wildcard.txt
 > 12.2.Root.Wildcard.txt
-cat 12.Having.Wildcard.txt | while read line; do
-tmp=""
-while(true)
-do
-if [[ `host -t A *.$line | grep NXDOMAIN` != "" ]]
-then
-        echo $tmp >> 12.2.Root.Wildcard.txt
-        break
-else
-        tmp=$line
-        line=`echo $line | cut -d "." -f2-`
-fi
-done
+cat 12.Having.Wildcard.txt | while read -r line; do
+    tmp=""
+    while true; do
+        if [[ host -t A "*.$line" | grep -q NXDOMAIN ]]; then
+            echo "$tmp" >> 12.2.Root.Wildcard.txt
+            break
+        fi
+        tmp="$line"
+        line=$(echo "$line" | cut -d "." -f2-)
+    done
 done
 
 cat 12.2.Root.Wildcard.txt 12.1.NotHaving.Wildcard.txt | sort -u > 13.Clean.SubDomains.txt

@@ -570,9 +570,15 @@ Example:
 EOF
 }
 
-# Check the command number and call the corresponding function
-
 Main() {
+
+# Main Code
+if [ $# -eq 0 ]; then
+    Usage
+    exit 1
+fi
+
+# Check the command number and call the corresponding function
 case $1 in
     0)
         Setup

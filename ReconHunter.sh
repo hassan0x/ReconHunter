@@ -523,76 +523,105 @@ Github_Leaked_Secrets 13 $User
 
 }
 
-Usage () {
+Usage() {
+    cat << EOF
+Usage: $0 <Command_Number> <Domain_Name>
 
-echo "Usage: $0 Command_Number"
+Available Commands:
+  0  -> Setup
+      - Initializes the environment and installs required tools.
+  1  -> Run All
+      - Executes all processes sequentially.
+  2  -> Passive Scraping
+      - Performs passive data collection and enumeration.
+  3  -> Brute Force
+      - Executes brute force attacks on discovered domains.
+  4  -> WildCard Removal
+      - Removes wildcard entries from the list of subdomains.
+      - Depends on Passive Scraping and Brute Force.
+  5  -> Spidering
+      - Crawls and collects data from discovered domains.
+      - Depends on WildCard Removal.
+  6  -> TakeOver
+      - Attempts to identify and exploit potential domain takeovers.
+      - Depends on Passive Scraping, Brute Force, and Spidering.
+  7  -> Censys
+      - Queries Censys for additional data on domains.
+  8  -> Port Scanning
+      - Scans discovered domains for open ports.
+      - Depends on Passive Scraping, Brute Force, and Censys.
+  9  -> Websites Screenshots
+      - Takes screenshots of websites for visual inspection.
+      - Depends on Spidering.
+  10 -> Dir BruteForce
+      - Performs directory brute force attacks on websites.
+      - Depends on Websites Screenshots.
+  11 -> Internet Archive
+      - Retrieves historical data from the Internet Archive.
+      - Depends on Spidering.
+  12 -> AWS S3 Buckets
+      - Enumerates and checks for exposed AWS S3 buckets.
+  13 -> Github Leaked Secrets
+      - Searches for leaked secrets on GitHub.
 
-echo "0  -> Setup"
-echo "1  -> Run All"
-echo "2  -> Passive Scraping"
-echo "3  -> Brute Force"
-echo "4  -> WildCard Removal" "------------ (Depends on Passive Scraping & Brute Force)"
-echo "5  -> Spidering" "------------------- (Depends on WildCard Removal)"
-echo "6  -> TakeOver" "-------------------- (Depends on Passive Scraping & Brute Force & Spidering)"
-echo "7  -> Censys"
-echo "8  -> Port Scanning" "--------------- (Depends on Passive Scraping & Brute Force & Censys)"
-echo "9  -> Websites Screenshots" "-------- (Depends on Spidering)"
-echo "10 -> Dir BruteForce" "-------------- (Depends on Websites Screenshots)"
-echo "11 -> Internet Archive" "------------ (Depends on Spidering)"
-echo "12 -> AWS S3 Buckets"
-echo "13 -> Github Leaked Secrets"
+Example:
+  $0 1 example.com # Executes the 'Run All' command
 
+EOF
 }
 
-# Main Code
+# Check the command number and call the corresponding function
 
-if [ $# -eq 0 ]
-then
+Main() {
+case $1 in
+    0)
+        Setup
+        ;;
+    1)
+        ALL "$@"
+        ;;
+    2)
+        Passive_Scraping "$@"
+        ;;
+    3)
+        Brute_Force "$@"
+        ;;
+    4)
+        WildCard_Removal "$@"
+        ;;
+    5)
+        Spidering "$@"
+        ;;
+    6)
+        TakeOver "$@"
+        ;;
+    7)
+        Censys "$@"
+        ;;
+    8)
+        Port_Scanning "$@"
+        ;;
+    9)
+        Websites_Screenshots "$@"
+        ;;
+    10)
+        Dir_BruteForce "$@"
+        ;;
+    11)
+        Internet_Archive "$@"
+        ;;
+    12)
+        AWS_S3_Buckets "$@"
+        ;;
+    13)
+        Github_Leaked_Secrets "$@"
+        ;;
+    *)
+        echo "Error: Invalid command number."
         Usage
-else
-        if [ $1 = "0" ]
-        then
-                Setup
-        elif [ $1 = "1" ]
-        then
-                ALL $*
-        elif [ $1 = "2" ]
-        then
-                Passive_Scraping $*
-        elif [ $1 = "3" ]
-        then
-                Brute_Force $*
-        elif [ $1 = "4" ]
-        then
-                WildCard_Removal $*
-        elif [ $1 = "5" ]
-        then
-                Spidering $*
-        elif [ $1 = "6" ]
-        then
-                TakeOver $*
-        elif [ $1 = "7" ]
-        then
-                Censys $*
-        elif [ $1 = "8" ]
-        then
-                Port_Scanning $*
-        elif [ $1 = "9" ]
-        then
-                Websites_Screenshots $*
-        elif [ $1 = "10" ]
-        then
-                Dir_BruteForce $*
-        elif [ $1 = "11" ]
-        then
-                Internet_Archive $*
-        elif [ $1 = "12" ]
-        then
-                AWS_S3_Buckets $*
-        elif [ $1 = "13" ]
-        then
-                Github_Leaked_Secrets $*
-        else
-                Usage
-        fi
-fi
+        exit 1
+        ;;
+esac
+}
+
+Main

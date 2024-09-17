@@ -70,7 +70,7 @@ Passive_Scraping () {
 
     grep "$Domain" 4.massDNS.Resolving.txt | cut -d " " -f1 | sed 's/.$//' | sort -u > 5.Live.SubDomains.txt
     cat 3.Passive.SubDomains.txt 5.Live.SubDomains.txt | sort | uniq -u > 6.Died.SubDomains.txt
-    
+
     grep "IN A" 4.massDNS.Resolving.txt | grep "$Domain" | cut -d " " -f5 | sort -u > 7.IP.Addresses.txt
 
     cd ..
@@ -125,7 +125,7 @@ WildCard_Removal () {
     echo "Checking for Wildcards..."
     > 12.Having.Wildcard.txt
     cat 11.Total.SubDomains.txt | while read -r line; do
-        host -t A "*.$line" | cut -d " " -f1 | sed 's/^*.//g' >> 12.Having.Wildcard.txt
+        host -t A "*.$line" | grep "has address" | cut -d " " -f1 | sed 's/^*.//g' >> 12.Having.Wildcard.txt
     done
 
     cat 11.Total.SubDomains.txt 12.Having.Wildcard.txt | sort | uniq -u > 12.1.NotHaving.Wildcard.txt
@@ -136,7 +136,7 @@ WildCard_Removal () {
         tmp=""
         while true; do
             if host -t A "*.$line" | grep -q NXDOMAIN; then
-                echo "$tmp" >> 12.2.Root.Wildcard.txt
+                echo "$tmp" | sed 's/\n//g' >> 12.2.Root.Wildcard.txt
                 break
             fi
             tmp="$line"
@@ -144,6 +144,7 @@ WildCard_Removal () {
         done
     done
 
+    cat 12.2.Root.Wildcard.txt | sort -u > tmp && mv tmp 12.2.Root.Wildcard.txt
     cat 12.2.Root.Wildcard.txt 12.1.NotHaving.Wildcard.txt | sort -u > 13.Clean.SubDomains.txt
 
     cd ..
@@ -180,10 +181,10 @@ Spidering () {
 
     echo "Running Resolving..."
     massdns -q -r ../Resources/resolvers.txt 15.Passive.SubDomains.txt | grep -E "IN A [0-9]|CNAME" > 16.massDNS.Resolving.txt
-    
+
     cat 16.massDNS.Resolving.txt | grep "$Domain" | cut -d " " -f1 | sort -u | sed 's/.$//' > 17.Live.SubDomains.txt
     cat 15.Passive.SubDomains.txt 17.Live.SubDomains.txt | sort | uniq -u > 18.Died.SubDomains.txt
-    
+
     cat 16.massDNS.Resolving.txt | grep "IN A" | grep "$Domain" | cut -d " " -f5 | sort -u > 19.IP.Addresses.txt
 
     echo "Combining Final SubDomains..."
@@ -217,10 +218,10 @@ TakeOver () {
     cat 22.All.SubDomains.txt | while read sub; do
         host "$sub" | grep alias | cut -d " " -f1,6 | tee -a 23.1.Takeover2.txt > tmp
         cat tmp | sed 's/ /\n/' | tail -n +2 | while read line; do
-            host "$line" | grep NXDOMAIN 
+            host "$line" | grep NXDOMAIN
         done
     done
-    
+
     rm providers.json tmp && cd ..
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
 }
@@ -246,7 +247,7 @@ Censys () {
     cat 27.Censys.txt | grep '"ip":' | cut -d'"' -f4 | sort -n | uniq > 28.IP.Addresses.txt
     cat 27.Censys.txt | grep '"port"' | cut -d":" -f2 | cut -d"," -f1 | cut -d" " -f2 | sort -n | uniq > 28.1.Censys.Ports.txt
     cat 27.Censys.txt | jq '.[] | .ip as $ip | .services[] | [$ip, .port, .transport_protocol, .service_name] | join(" ")' | cut -d'"' -f2 > 28.2.Censys.IP.Ports.txt
-    
+
     cd ..
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
 }
@@ -256,11 +257,11 @@ Port_Scanning () {
     echo "#################################################"
     echo "#                IP & PORT SCANNING             #"
     echo "#################################################"
-    
+
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
-    
+
     echo "#################################################"
-    
+
     if [[ -z $2 ]]; then echo "Usage: $0 $1 example.com"; exit 1; fi
 
     Domain=$2 && echo "Domain: $Domain"
@@ -292,11 +293,11 @@ Websites_Screenshots () {
     echo "#################################################"
     echo "#              Websites Screenshots             #"
     echo "#################################################"
-    
+
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
-    
+
     echo "#################################################"
-    
+
     if [[ -z $2 ]]; then echo "Usage: $0 $1 example.com"; exit 1; fi
 
     Domain=$2 && echo "Domain: $Domain"
@@ -314,18 +315,18 @@ Dir_BruteForce () {
     echo "#################################################"
     echo "#       Directories & Files Brute Forcing       #"
     echo "#################################################"
-    
+
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
-    
+
     echo "#################################################"
-    
+
     if [[ -z $2 ]]; then echo "Usage: $0 $1 example.com"; exit 1; fi
 
     Domain=$2 && echo "Domain: $Domain"
     mkdir -p "$Domain" && cd "$Domain"
 
     echo "Running DirSearch..."
-    
+
     > 25.DirSearch.txt
     cat 24.Screenshots/aquatone_urls.txt | while read line; do
         timeout 300 dirsearch -e php,asp,aspx,jsp,html,zip,jar -w $PWD/../Resources/dicc.txt -t 50 -u $line -o $PWD/dir-tmp.txt -q --full-url 1>/dev/null
@@ -341,18 +342,18 @@ Internet_Archive () {
     echo "#################################################"
     echo "#                Internet Archive               #"
     echo "#################################################"
-    
+
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
-    
+
     echo "#################################################"
-    
+
     if [[ -z $2 ]]; then echo "Usage: $0 $1 example.com"; exit 1; fi
 
     Domain=$2 && echo "Domain: $Domain"
     mkdir -p "$Domain" && cd "$Domain"
 
     echo "Running WayBackURLs..."
-    
+
     > 26.WayBackURLs.txt
     cat 22.All.SubDomains.txt | while read line; do
         echo $line | ../Tools/bin/waybackurls >> 26.WayBackURLs.txt
@@ -374,11 +375,11 @@ AWS_S3_Buckets () {
     echo "#################################################"
     echo "#                  AWS S3 Buckets               #"
     echo "#################################################"
-    
+
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
     echo "Insert your AWS API Keys using 'aws configure'"
     echo "#################################################"
-    
+
     if [[ -z $2 ]]; then echo "Usage: $0 $1 example.com"; exit 1; fi
 
     Domain=$2 && echo "Domain: $Domain"
@@ -410,11 +411,11 @@ Github_Leaked_Secrets () {
     echo "#################################################"
     echo "#             Github Leaked Secrets             #"
     echo "#################################################"
-    
+
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
-    
+
     echo "#################################################"
-    
+
     if [[ -z $2 ]]; then echo "Usage: $0 $1 github_username"; exit 1; fi
 
     User=$2 && echo "User: $User"
@@ -431,7 +432,7 @@ Github_Leaked_Secrets () {
 
     # Check if there are repositories to search
     if [[ $(find . -type d) ]]; then
-    
+
         # Find sensitive data inside repos using git
         for dir in ./*/; do
             echo "Native Searching: $dir"
@@ -460,11 +461,11 @@ ALL () {
     echo "#################################################"
     echo "#                Run All Commands               #"
     echo "#################################################"
-    
+
     echo "Date and Time: $(date '+%Y-%m-%d %H:%M:%S')"
-    
+
     echo "#################################################"
-    
+
     if [[ -z $3 ]]; then echo "Usage: $0 $1 example.com github_username"; exit 1; fi
 
     Domain=$2 && echo "Domain: $Domain"
@@ -487,7 +488,9 @@ ALL () {
 
 Usage() {
 
+    echo ""
     echo "Usage: $0 <Command Number>"
+    echo ""
 
     echo "+----+-------------------------+------------------------------------------------------+"
     echo "| No | Command                 | Description                                          |"
